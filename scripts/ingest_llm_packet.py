@@ -200,21 +200,21 @@ def render_phase_badge(phase: Optional[str]) -> Optional[str]:
     mapping = {
         "critical": (
             "risk-badge--high",
-            "Trigger risk: Critical",
-            "trigger-risk-critical",
-            "Trigger risk badge · Critical",
+            "Sustainability state: Critical",
+            "sustainability-state-critical",
+            "Sustainability state badge · Critical",
         ),
         "elevated": (
             "risk-badge--medium",
-            "Trigger risk: Elevated",
-            "trigger-risk-elevated",
-            "Trigger risk badge · Elevated",
+            "Sustainability state: Elevated",
+            "sustainability-state-elevated",
+            "Sustainability state badge · Elevated",
         ),
         "watch": (
             "risk-badge--watch",
-            "Trigger risk: Watch",
-            "trigger-risk-watch",
-            "Trigger risk badge · Watch",
+            "Sustainability state: Watch",
+            "sustainability-state-watch",
+            "Sustainability state badge · Watch",
         ),
     }
     if normalized in mapping:
@@ -222,9 +222,9 @@ def render_phase_badge(phase: Optional[str]) -> Optional[str]:
     else:
         class_name, text, slug, preview = (
             "risk-badge--watch",
-            f"Phase: {label.title()}",
+            f"Sustainability state: {label.title()}",
             None,
-            f"Trigger risk badge · {label.title()}",
+            f"Sustainability state badge · {label.title()}",
         )
     return render_glossary_link(
         text,
@@ -292,7 +292,7 @@ def render_post_page(
 ) -> str:
     """Wrap briefing content in the site layout template."""
 
-    safe_title = title.strip() or "Trigger Risk Monitor briefing"
+    safe_title = title.strip() or "AI Sustainability Monitor briefing"
     meta_description = (description or extract_text_summary(content, fallback=safe_title)).strip()
     subtitle_text = str(subtitle or "").strip()
 

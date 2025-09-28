@@ -68,6 +68,36 @@
           </section>
 
           <section>
+            <h2 id="glossary-states">Sustainability states</h2>
+            <p>
+              Every briefing carries a sustainability state badge derived from the packet <code>phase</code> field. These labels
+              translate analyst judgement about structural stress into a quick read on urgency and help readers interpret NSI
+              moves at a glance.
+            </p>
+            <div class="callout">
+              <span class="callout__label">Phase quick reference</span>
+              <ul>
+                <li id="sustainability-state-watch">
+                  <strong>Watch</strong> — Baseline condition with mixed signals. NSI typically hovers between 45 and 60 while
+                  metrics warrant closer monitoring for deterioration or recovery.
+                </li>
+                <li id="sustainability-state-elevated">
+                  <strong>Elevated</strong> — Sustained downward pressure or tightening fundamentals. NSI often drifts below 50
+                  alongside hard metrics tilting toward Tier Y thresholds.
+                </li>
+                <li id="sustainability-state-critical">
+                  <strong>Critical</strong> — Acute stress that demands mitigation. NSI drops toward the low 40s or below and hard
+                  metrics show Tier X readings or binding capacity constraints.
+                </li>
+              </ul>
+              <p>
+                Badges link back to this reference so the meaning of each label remains consistent across posts, the archive, and
+                any regenerated pages.
+              </p>
+            </div>
+          </section>
+
+          <section>
             <h2 id="glossary-score">Cluster metadata</h2>
             <p>
               Each cluster entry in <code>data/leaderboard.json</code> contains fields sourced from the packet and enriched during
