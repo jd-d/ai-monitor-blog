@@ -11,22 +11,23 @@ from scripts.ingest_llm_packet import (
     find_similar_event,
     merge_event,
     render_article_history_section,
+    compute_sustainability_index,
 )
 
 
 BASE_FIELDS = {
-    "cluster": "shipping",
-    "event_type": "typhoon_disruption",
-    "primary_entities": ["Typhoon Ragasa"],
-    "geography": ["china_south", "vietnam"],
-    "instruments": ["port_operations"],
-    "mechanism": "natural_shock_supply_chains",
+    "cluster": "ai_capex",
+    "event_type": "investment_update",
+    "primary_entities": ["Hyperscalers", "Microsoft"],
+    "geography": ["global", "united_states"],
+    "instruments": ["data_centers", "infrastructure"],
+    "mechanism": "ai_capex_expansion",
 }
 
 
 def test_canonical_source_is_ignored_by_fingerprint():
     fields_a = canonicalize_fingerprint_fields(
-        {**BASE_FIELDS, "canonical_source": "wikipedia.org"}
+        {**BASE_FIELDS, "canonical_source": "newmark.com"}
     )
     fields_b = canonicalize_fingerprint_fields(
         {**BASE_FIELDS, "canonical_source": "reuters.com"}
@@ -37,19 +38,21 @@ def test_canonical_source_is_ignored_by_fingerprint():
 
 def test_merging_updates_tracks_sources_and_history():
     canonical_initial = canonicalize_fingerprint_fields(
-        {**BASE_FIELDS, "canonical_source": "wikipedia.org"}
+        {**BASE_FIELDS, "canonical_source": "newmark.com"}
     )
     fingerprint = compute_fingerprint(canonical_initial)
     payload_initial = {
         "cluster": BASE_FIELDS["cluster"],
         "event_type": BASE_FIELDS["event_type"],
-        "title": "Typhoon Ragasa Triggers Port & Power Disruptions",
+        "title": "Hyperscalers Expand AI Capex Amid $7 Trillion Buildout",
         "phase": "watch",
+        "bullish_score": 65,
+        "bearish_score": 55,
         "score": 55,
         "confidence": "medium",
-        "indicators": {"port_shutdown": 1},
-        "tripwires": ["port_reopening"],
-        "rationale": ["Storm damage remains widespread"],
+        "indicators": {"capex_2024_b": 210},
+        "tripwires": ["capex_guidance_cuts"],
+        "rationale": ["Hyperscaler spend remains elevated"],
         "sources": ["https://example.com/initial"],
     }
     event = create_event(canonical_initial, fingerprint, payload_initial, "2025-09-24")
@@ -63,16 +66,18 @@ def test_merging_updates_tracks_sources_and_history():
     payload_second = copy.deepcopy(payload_initial)
     payload_second.update(
         {
-            "title": "Typhoon Ragasa Disrupts Ports and Power Grids",
-            "score": 68,
-            "sources": ["https://reuters.com/world/asia-pacific/example"],
+            "title": "Hyperscalers Signal AI Capex Discipline",
+            "score": 58,
+            "bullish_score": 60,
+            "bearish_score": 46,
+            "sources": ["https://reuters.com/technology/example"],
         }
     )
 
     merge_event(event, payload_second, second_fields, fingerprint_second, "2025-09-25")
 
     assert event["canonical_source"] == "https://reuters.com"
-    assert {"https://reuters.com", "https://wikipedia.org"}.issubset(set(event["sources"]))
+    assert {"https://reuters.com", "https://newmark.com"}.issubset(set(event["sources"]))
 
     assert len(event["history"]) == 2
     assert event["history"][-1] == {"date": "2025-09-25", "score": event["score"]}
@@ -81,19 +86,23 @@ def test_merging_updates_tracks_sources_and_history():
     latest_article = event["article_history"][-1]
     assert latest_article["source"] == "https://reuters.com"
     assert latest_article["score"] == event["score"]
-    assert "https://reuters.com/world/asia-pacific/example" in latest_article["sources"]
+    assert "https://reuters.com/technology/example" in latest_article["sources"]
+    expected_nsi = compute_sustainability_index(payload_second["bullish_score"], payload_second["bearish_score"])
+    assert event["sustainability_index"] == expected_nsi
 
 
 def test_find_similar_event_detects_near_match():
     canonical_initial = canonicalize_fingerprint_fields(
-        {**BASE_FIELDS, "canonical_source": "wikipedia.org"}
+        {**BASE_FIELDS, "canonical_source": "newmark.com"}
     )
     fingerprint = compute_fingerprint(canonical_initial)
     payload_initial = {
         "cluster": BASE_FIELDS["cluster"],
         "event_type": BASE_FIELDS["event_type"],
-        "title": "Typhoon Ragasa Triggers Port & Power Disruptions",
+        "title": "Hyperscalers Expand AI Capex Amid $7 Trillion Buildout",
         "phase": "watch",
+        "bullish_score": 65,
+        "bearish_score": 55,
         "score": 55,
         "confidence": "medium",
         "indicators": {},
@@ -106,12 +115,12 @@ def test_find_similar_event_detects_near_match():
 
     new_fields = canonicalize_fingerprint_fields(
         {
-            "cluster": "shipping",
-            "event_type": "typhoon_disruption",
-            "primary_entities": ["Typhoon Ragasa"],
-            "geography": ["china_south", "vietnam", "taiwan"],
-            "instruments": ["port_flow", "electric_power", "logistics"],
-            "mechanism": "natural_shock_chain_disruption",
+            "cluster": "ai_capex",
+            "event_type": "investment_update",
+            "primary_entities": ["Hyperscalers", "Microsoft"],
+            "geography": ["global", "united_states", "canada"],
+            "instruments": ["data_centers", "infrastructure", "power"],
+            "mechanism": "ai_capex_expansion",
             "canonical_source": "reuters.com",
         }
     )
@@ -119,7 +128,7 @@ def test_find_similar_event_detects_near_match():
     match = find_similar_event(
         new_fields,
         events_by_fp,
-        title="Typhoon Ragasa Disrupts Ports and Power Grids",
+        title="Hyperscalers Signal AI Capex Discipline",
     )
 
     assert match is not None
@@ -142,7 +151,7 @@ def test_article_history_renders_newest_first():
                     "date": "2025-09-25",
                     "title": "Follow-up assessment",
                     "sources": ["https://example.com/update"],
-                    "score": 68,
+                    "score": 58,
                 },
             ]
         }

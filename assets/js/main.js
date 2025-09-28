@@ -37,7 +37,7 @@
       const message = document.createElement('p');
       message.className = 'subscribe__message';
       message.setAttribute('role', 'status');
-      message.textContent = `Thanks! Cycle updates will be sent to ${email}.`;
+      message.textContent = `Thanks! AI sustainability updates will be sent to ${email}.`;
       message.style.marginTop = '1rem';
       message.style.color = 'var(--color-text-muted)';
       form.parentElement?.appendChild(message);

@@ -1,122 +1,240 @@
 {
-  "as_of": "2025-09-26",
-  "note": "Scores 0–100; 50 baseline",
-  "risks": [
+  "as_of": "2025-09-28",
+  "note": "Sustainability index (NSI) ranges from 0–100 with 50 as neutral.",
+  "methodology_note": "Bullish and bearish scores were assigned based on qualitative assessment of recent news and research across each cluster. Weighted averages are computed using specified weights for each cluster (AI_CAPEX 0.25, POWER_GRID 0.20, UNIT_ECONOMICS 0.20, SEMI_SUPPLY 0.15, ENTERPRISE_DEMAND 0.15, POLICY_GEOPOLITICS 0.05). The sustainability index (NSI) equals 50 + 0.5 * (Overall Bullish − Overall Bearish), bounded between 0 and 100.",
+  "thresholds": {
+    "X": 50,
+    "Y": 40,
+    "Z": 30
+  },
+  "overall": {
+    "state": "watch",
+    "bullish_score": 58,
+    "bearish_score": 56.3,
+    "sustainability_index": 50.9,
+    "override_applied": false,
+    "persistence_flag": false
+  },
+  "clusters": [
     {
-      "id": "us_cre-959b5292f304",
-      "name": "Office Crash Triggers Record CRE Loan Defaults",
-      "score": 70.0,
-      "phase": "elevated",
-      "last_updated": "2025-09-23",
-      "cluster": "US_CRE",
+      "id": "POWER_GRID",
+      "name": "Power Grid & Energy",
+      "phase": "critical",
+      "confidence": "medium",
+      "bullish_score": 35,
+      "bearish_score": 70,
+      "sustainability_index": 32.5,
+      "rationale": [
+        "AI could drive data-center power demand from 4 GW to 123 GW by 2035 and consumption may more than double by 2030",
+        "Data centers already consume 26% of Virginia’s electricity and up to 80% in Dublin; grid connections can take years"
+      ],
+      "indicators": {
+        "estimated_ai_power_demand_gw_2035": 123,
+        "current_power_share_pct": 26
+      },
       "sources": [
-        "https://www.trepp.com/trepptalk/cmbs-delinquency-rate-increases-again-in-august-2025",
-        "https://commercialobserver.com/2025/08/brookfield-dmv-office-distress"
-      ]
+        "https://www2.deloitte.com/us/en/pages/about-deloitte/articles/press-releases/deloitte-ai-data-center-power-demand-report.html",
+        "https://ember-climate.org/insights/research/grids-for-data-centres"
+      ],
+      "latest_slug": "power-grid-bottleneck-ai",
+      "latest_title": "Power Constraints Threaten AI Data-Center Growth"
     },
     {
-      "id": "shipping-665a2c2b3be2",
-      "name": "Typhoon Ragasa Disrupts Ports and Power Grids",
-      "score": 70.0,
+      "id": "SEMI_SUPPLY",
+      "name": "Semiconductor Supply",
       "phase": "elevated",
-      "last_updated": "2025-09-26",
-      "cluster": "SHIPPING",
+      "confidence": "medium",
+      "bullish_score": 55,
+      "bearish_score": 60,
+      "sustainability_index": 47.5,
+      "rationale": [
+        "Generative‑AI chip revenues are projected to exceed $150 B in 2025",
+        "Advanced chips represent <0.2% of wafer capacity and Europe aims to double its small share; export controls and uncertain subsidies add risk"
+      ],
+      "indicators": {
+        "generative_ai_chip_revenue_b_2025": 150,
+        "advanced_node_capacity_pct": 0.2
+      },
       "sources": [
-        "https://www.reuters.com/business/environment/super-typhoon-lashes-hong-kong-with-hurricane-force-winds-heavy-rain-2025-09-23",
-        "https://www.reuters.com/world/asia-pacific/14-dead-eastern-taiwan-after-typhoon-unleashes-flood-2025-09-25"
-      ]
+        "https://www2.deloitte.com/global/en/insights/industry/technology/semiconductor-industry-outlook.html",
+        "https://www.eetimes.eu/europe-is-convincingly-pursuing-a-path-to-semiconductor-sovereignty"
+      ],
+      "latest_slug": "semiconductor-supply-strains-and-policy-risks",
+      "latest_title": "AI Chip Demand Strains Semiconductor Supply Amid Policy Risks"
     },
     {
-      "id": "odte-b5ce83fd07b5",
-      "name": "China Power Grid Stress Surges",
-      "score": 70.0,
-      "phase": "elevated",
-      "last_updated": "2025-09-24",
-      "cluster": "ODTE",
-      "sources": []
-    },
-    {
-      "id": "shipping-40ed61d9c66d",
-      "name": "Typhoon Ragasa Triggers Port & Power Disruptions",
-      "score": 68.0,
-      "phase": "elevated",
-      "last_updated": "2025-09-25",
-      "cluster": "SHIPPING",
-      "sources": [
-        "https://en.wikipedia.org/wiki/Typhoon_Ragasa"
-      ]
-    },
-    {
-      "id": "china_credit-e8b65ff2b462",
-      "name": "China Property Crisis Deepens with Developer Defaults",
-      "score": 65.0,
-      "phase": "elevated",
-      "last_updated": "2025-09-23",
-      "cluster": "CHINA_CREDIT",
-      "sources": [
-        "https://yipinstitute.org/policy/economic-implications-of-evergrande-collapse",
-        "https://www.scmp.com/business/china-business/article/3231779/chinas-property-slump-may-be-bottoming-analysts-point-signs-recovery-fitch-says-risks-remain"
-      ]
-    },
-    {
-      "id": "euro_sov-2a17a684fb87",
-      "name": "Thailand’s Credit Outlook Cut to Negative",
-      "score": 65.0,
+      "id": "POLICY_GEOPOLITICS",
+      "name": "Policy & Geopolitics",
       "phase": "watch",
-      "last_updated": "2025-09-26",
-      "cluster": "EURO_SOV",
+      "confidence": "medium",
+      "bullish_score": 55,
+      "bearish_score": 60,
+      "sustainability_index": 47.5,
+      "rationale": [
+        "The EU AI Act creates a risk-based framework and the EU Chips Act aims to raise Europe’s semiconductor share to 20%",
+        "Export controls restrict chip sales to countries of concern and the U.S. Chips Act may be repealed, increasing uncertainty"
+      ],
+      "indicators": {
+        "chips_act_subsidies_usd_b": 39,
+        "eu_chips_act_funding_eur_b": 43
+      },
       "sources": [
-        "https://www.fitchratings.com/research/sovereigns/fitch-revises-thailand-outlook-to-negative-affirms-at-bbb-24-09-2025",
-        "https://www.reuters.com/world/asia-pacific/thai-finance-minister-says-country-must-heed-fitch-warning-2025-09-25"
-      ]
+        "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+        "https://www.reuters.com/technology/trump-wants-kill-527-billion-semiconductor-chips-subsidy-law-2025-03-05"
+      ],
+      "latest_slug": "regulation-and-geopolitics-shape-ai",
+      "latest_title": "Regulation and Geopolitics Reshape AI Landscape"
     },
     {
-      "id": "ai_power-8dbdd5c002e9",
-      "name": "AI Data Center Boom Tests Grid Limits",
-      "score": 60.0,
+      "id": "AI_CAPEX",
+      "name": "AI Capex and Capacity",
       "phase": "elevated",
-      "last_updated": "2025-09-23",
-      "cluster": "AI_POWER",
+      "confidence": "medium",
+      "bullish_score": 65,
+      "bearish_score": 55,
+      "sustainability_index": 55.0,
+      "rationale": [
+        "Hyperscalers spent ~$210 B on AI data-center capex in 2024",
+        "Analysts forecast $5–7 T in cumulative AI capex by 2030 and AI may account for 70% of demand"
+      ],
+      "indicators": {
+        "latest_capex_guidance_usd_b": 210,
+        "announced_compute_gw": 156
+      },
       "sources": [
-        "https://www.nerc.com/pa/RAPA/ra/Reliability%20Assessments/NERC_SOR_2025.pdf",
-        "https://news.bgov.com/tech-and-telecom-law/data-centers-pose-threat-to-electric-grids-says-us-regulator"
-      ]
+        "https://newmark.com/2025-us-data-center-market-outlook",
+        "https://www.brownadvisory.com/us/insights/the-data-center-balancing-act"
+      ],
+      "latest_slug": "hyperscalers-ai-capex-boom",
+      "latest_title": "Hyperscalers Expand AI Capex Amid $7 Trillion Buildout"
     },
     {
-      "id": "china_credit-263d32992dda",
-      "name": "China’s Hidden Local Debt Threatens Financial Stability",
-      "score": 60.0,
-      "phase": "elevated",
-      "last_updated": "2025-09-23",
-      "cluster": "CHINA_CREDIT",
-      "sources": [
-        "https://www.imf.org/en/Publications/CR/Issues/2025/04/30/Peoples-Republic-of-China-Financial-System-Assessment-Program-Financial-System-Stability-566570",
-        "https://www.atlanticcouncil.org/blogs/econographics/sinographs/beijing-extends-and-pretends-to-deal-with-its-mountain-of-local-government-debt"
-      ]
-    },
-    {
-      "id": "shipping-05ceacd6b31a",
-      "name": "Panama Canal Drought Restricts Shipping Traffic",
-      "score": 60.0,
-      "phase": "elevated",
-      "last_updated": "2025-09-23",
-      "cluster": "SHIPPING",
-      "sources": [
-        "https://supplychains.com/navigating-drought-panama-canal-imposes-restrictions-on-large-ships",
-        "https://lloydslist.maritimeintelligence.informa.com/"
-      ]
-    },
-    {
-      "id": "us_cre-bdea74833ce9",
-      "name": "Regional Banks Face CRE Maturity Wall",
-      "score": 60.0,
+      "id": "ENTERPRISE_DEMAND",
+      "name": "Enterprise Demand",
       "phase": "watch",
-      "last_updated": "2025-09-23",
-      "cluster": "US_CRE",
+      "confidence": "medium",
+      "bullish_score": 65,
+      "bearish_score": 50,
+      "sustainability_index": 57.5,
+      "rationale": [
+        "U.S. private AI investment reached $109 B in 2024 and 78% of organisations report using AI",
+        "Only a minority have redesigned workflows and moved use-cases into full production"
+      ],
+      "indicators": {
+        "private_ai_investment_usd_b": 109.1,
+        "orgs_using_ai_pct": 78
+      },
       "sources": [
-        "https://www.scotsmanguide.com/commercial/more-pain-to-come-for-regional-banks",
-        "https://www.reuters.com/business/yellen-concerned-about-us-commercial-real-estate-says-stresses-manageable-2024-02-06"
+        "https://hai.stanford.edu/ai-index/2025-ai-index-report",
+        "https://isg-one.com/state-of-enterprise-ai-adoption-report-2025"
+      ],
+      "latest_slug": "enterprise-ai-adoption-booming",
+      "latest_title": "Enterprise AI Adoption Grows But Monetization Lags"
+    },
+    {
+      "id": "UNIT_ECONOMICS",
+      "name": "Unit Economics & Efficiency",
+      "phase": "watch",
+      "confidence": "high",
+      "bullish_score": 70,
+      "bearish_score": 45,
+      "sustainability_index": 62.5,
+      "rationale": [
+        "Per-token inference costs have fallen by more than two orders of magnitude since 2021",
+        "AI servers operate at 80–90% utilisation but gross margins remain around 50–60%, indicating thin profitability"
+      ],
+      "indicators": {
+        "inference_cost_decrease_factor": 280,
+        "server_utilization_pct": 85
+      },
+      "sources": [
+        "https://a16z.com/ai-costs-llmflation",
+        "https://www.datacenterfrontier.com/sponsored/article/55271057/the-next-era-of-ai-data-centers-why-device-level-management-matters"
+      ],
+      "latest_slug": "unit-economics-improving-but-margins-thin",
+      "latest_title": "AI Unit Costs Plunge While Margins Remain Thin"
+    }
+  ],
+  "top_pressures": [
+    {
+      "id": "POWER_GRID",
+      "name": "Power Grid & Energy",
+      "phase": "critical",
+      "sustainability_index": 32.5,
+      "latest_slug": "power-grid-bottleneck-ai"
+    },
+    {
+      "id": "SEMI_SUPPLY",
+      "name": "Semiconductor Supply",
+      "phase": "elevated",
+      "sustainability_index": 47.5,
+      "latest_slug": "semiconductor-supply-strains-and-policy-risks"
+    },
+    {
+      "id": "POLICY_GEOPOLITICS",
+      "name": "Policy & Geopolitics",
+      "phase": "watch",
+      "sustainability_index": 47.5,
+      "latest_slug": "regulation-and-geopolitics-shape-ai"
+    }
+  ],
+  "hard_metrics": {
+    "ccr": {
+      "id": "ccr",
+      "label": "Capital Coverage Ratio (CCR)",
+      "value": 0.25,
+      "display_value": "0.25×",
+      "tier": "x",
+      "note": "Estimated using OpenAI revenue versus depreciation+interest and opex for installed AI capacity",
+      "sources": [
+        "https://newmark.com/2025-us-data-center-market-outlook",
+        "https://www.reuters.com/business/media-telecom/openais-annualized-revenue-hits-10-billion-up-55-billion-december-2024-2025-06-09"
+      ]
+    },
+    "psr": {
+      "id": "psr",
+      "label": "Power Security Ratio (PSR)",
+      "value": 0.3,
+      "display_value": "0.30×",
+      "tier": "y",
+      "note": "Ratio of secured power (PPAs and interconnect approvals) to needed AI power derived from utility commitments versus projected 123 GW demand",
+      "sources": [
+        "https://www.brownadvisory.com/us/insights/the-data-center-balancing-act",
+        "https://www2.deloitte.com/us/en/pages/about-deloitte/articles/press-releases/deloitte-ai-data-center-power-demand-report.html"
+      ]
+    },
+    "uei": {
+      "id": "uei",
+      "label": "Utilisation Efficiency Index (UEI)",
+      "value": 85,
+      "display_value": "85%",
+      "tier": "ok",
+      "note": null,
+      "sources": [
+        "https://www.datacenterfrontier.com/sponsored/article/55271057/the-next-era-of-ai-data-centers-why-device-level-management-matters"
+      ]
+    },
+    "mg": {
+      "id": "mg",
+      "label": "Operating Margin (MG)",
+      "value": 55,
+      "display_value": "55%",
+      "tier": "ok",
+      "note": null,
+      "sources": [
+        "https://www.monetizely.com/blog/ai-pricing-how-much-does-ai-cost"
+      ]
+    },
+    "fh": {
+      "id": "fh",
+      "label": "Financing Headroom (ROIC – WACC)",
+      "value": -200,
+      "display_value": "-200 bps",
+      "tier": "x",
+      "note": null,
+      "sources": [
+        "https://newmark.com/2025-us-data-center-market-outlook"
       ]
     }
-  ]
+  }
 }

@@ -1,19 +1,47 @@
 {
-  "as_of": "2025-09-26",
+  "as_of": "2025-09-28",
   "items": [
     {
-      "event_uid": "euro_sov__thailand_negative_outlook__2025-09-26",
-      "slug": "thailand_negative_outlook",
-      "title": "Thailand’s Credit Outlook Cut to Negative",
-      "cluster": "EURO_SOV",
-      "as_of": "2025-09-26"
+      "event_uid": "AI_CAPEX__hyperscalers-ai-capex-boom__2025-09-28",
+      "slug": "hyperscalers-ai-capex-boom",
+      "title": "Hyperscalers Expand AI Capex Amid $7 Trillion Buildout",
+      "cluster": "AI_CAPEX",
+      "as_of": "2025-09-28"
     },
     {
-      "event_uid": "shipping__typhoon_ragasa_trade_grid_shock__2025-09-26",
-      "slug": "typhoon_ragasa_disrupts_ports_power",
-      "title": "Typhoon Ragasa Disrupts Ports and Power Grids",
-      "cluster": "SHIPPING",
-      "as_of": "2025-09-26"
+      "event_uid": "POWER_GRID__power-grid-bottleneck-ai__2025-09-28",
+      "slug": "power-grid-bottleneck-ai",
+      "title": "Power Constraints Threaten AI Data-Center Growth",
+      "cluster": "POWER_GRID",
+      "as_of": "2025-09-28"
+    },
+    {
+      "event_uid": "SEMI_SUPPLY__semiconductor-supply-strains-and-policy-risks__2025-09-28",
+      "slug": "semiconductor-supply-strains-and-policy-risks",
+      "title": "AI Chip Demand Strains Semiconductor Supply Amid Policy Risks",
+      "cluster": "SEMI_SUPPLY",
+      "as_of": "2025-09-28"
+    },
+    {
+      "event_uid": "UNIT_ECONOMICS__unit-economics-improving-but-margins-thin__2025-09-28",
+      "slug": "unit-economics-improving-but-margins-thin",
+      "title": "AI Unit Costs Plunge While Margins Remain Thin",
+      "cluster": "UNIT_ECONOMICS",
+      "as_of": "2025-09-28"
+    },
+    {
+      "event_uid": "ENTERPRISE_DEMAND__enterprise-ai-adoption-booming__2025-09-28",
+      "slug": "enterprise-ai-adoption-booming",
+      "title": "Enterprise AI Adoption Grows But Monetization Lags",
+      "cluster": "ENTERPRISE_DEMAND",
+      "as_of": "2025-09-28"
+    },
+    {
+      "event_uid": "POLICY_GEOPOLITICS__regulation-and-geopolitics-shape-ai__2025-09-28",
+      "slug": "regulation-and-geopolitics-shape-ai",
+      "title": "Regulation and Geopolitics Reshape AI Landscape",
+      "cluster": "POLICY_GEOPOLITICS",
+      "as_of": "2025-09-28"
     }
   ]
 }

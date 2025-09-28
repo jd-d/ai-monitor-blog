@@ -3,16 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Trigger Risk Monitor &mdash; Tracking the 18.6-Year Cycle</title>
+    <title>AI Sustainability Monitor — Tracking the AI Boom's Health</title>
     <meta
       name="description"
-      content="Signal-driven blog that tracks macro, credit, and sentiment triggers that could puncture the late stage of the 18.6-year land cycle."
+      content="Daily sustainability index and briefings covering capex, power, supply chains, and policy signals shaping the AI ecosystem."
     />
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-      crossorigin
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
@@ -25,7 +21,7 @@
   <body>
     <header class="site-header" id="top">
       <div class="container header-inner">
-        <a class="logo" href="index.html">Trigger Risk Monitor</a>
+        <a class="logo" href="index.html">AI Sustainability Monitor</a>
         <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
           <span class="sr-only">Toggle navigation</span>
           <span class="nav-toggle__bar"></span>
@@ -34,12 +30,12 @@
         </button>
         <nav id="site-nav" class="site-nav" aria-label="Primary">
           <ul>
-            <li><a href="#leaderboard">Leaderboard</a></li>
+            <li><a href="#health">AI health</a></li>
             <li><a href="#latest">Latest briefings</a></li>
-            <li><a href="posts/index.html">All briefings</a></li>
+            <li><a href="posts/index.html">Briefing archive</a></li>
             <li><a href="methodology.html">Methodology</a></li>
             <li><a href="glossary.html">Glossary</a></li>
-            <li><a href="#dashboard">Trigger dashboard</a></li>
+            <li><a href="#metrics">Hard metrics</a></li>
             <li><a href="#playbook">Playbook</a></li>
           </ul>
         </nav>
@@ -50,91 +46,72 @@
       <section class="hero">
         <div class="container hero-inner">
           <div class="hero-copy">
-            <p class="eyebrow">18.6-Year Land Cycle Watch</p>
-            <h1>Keeping score of the pressure building ahead of the next downturn.</h1>
+            <p class="eyebrow">AI Ecosystem Watch</p>
+            <h1>Tracking whether the AI boom is on sustainable footing.</h1>
             <p>
-              Liquidity, credit, fiscal, and sentiment data are parsed each week
-              to flag the catalysts most likely to trigger the next slide in the
-              property and risk asset complex.
+              Weighted signals across capex, power, semiconductor supply, unit economics, demand,
+              and policy show where stress is building. Follow the daily sustainability index,
+              drill into cluster briefings, and monitor hard metrics that ground the narrative.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#latest">Read this week's signals</a>
-              <a class="btn btn-secondary" href="#playbook">See the playbook</a>
+              <a class="btn btn-primary" href="#health">Explore the dashboard</a>
+              <a class="btn btn-secondary" href="#latest">Read the latest briefings</a>
             </div>
           </div>
-          <div class="hero-card" role="presentation">
-            <h2>Cycle Position</h2>
-            <p class="hero-card__subtitle">Late Expansion &bull; Fragility heightened</p>
-            <ul class="hero-card__indicators">
-              <li>
-                <span
-                  ><a href="posts/thailand_sovereign_watch.html"
-                    >Sovereign stress spreads to Thailand</a
-                  ></span
-                >
-                <strong class="indicator indicator--weakening">Weakening</strong>
-              </li>
-              <li>
-                <span
-                  ><a href="posts/office-crash-defaults.html"
-                    >CRE credit quality</a
-                  ></span
-                >
-                <strong class="indicator indicator--deteriorating">Deteriorating</strong>
-              </li>
-              <li>
-                <span
-                  ><a href="posts/china_power_grid_stress.html"
-                    >China grid blackouts</a
-                  ></span
-                >
-                <strong class="indicator indicator--deteriorating">Deteriorating</strong>
-              </li>
-            </ul>
-            <p class="hero-card__note">
-              Baseline view updated 24 September 2025. Recent briefs cover
-              <a href="posts/thailand_sovereign_watch.html"
-                >Thailand&rsquo;s rating watch</a
-              >,
-              <a href="posts/china_power_grid_stress.html"
-                >rolling blackouts in China</a
-              >,
-              and
-              <a href="posts/gulf_port_outage.html"
-                >a Gulf port outage straining trade</a
-              >.
+          <div class="hero-card" role="presentation" data-overall-card>
+            <h2>AI Sustainability Index</h2>
+            <p class="hero-card__subtitle">
+              <span data-overall-state>—</span>
+              <span aria-hidden="true">&bull;</span>
+              <span data-overall-score>—</span>
+            </p>
+            <dl class="hero-card__stats">
+              <div>
+                <dt>Overall bullish</dt>
+                <dd data-overall-bullish>—</dd>
+              </div>
+              <div>
+                <dt>Overall bearish</dt>
+                <dd data-overall-bearish>—</dd>
+              </div>
+            </dl>
+            <ul class="hero-card__indicators" data-top-pressures aria-live="polite"></ul>
+            <p class="hero-card__note" data-methodology-note>
+              Methodology note unavailable. Scores update when new packets are ingested.
             </p>
           </div>
         </div>
       </section>
 
-      <section id="leaderboard" class="section section--light">
+      <section id="health" class="section section--light">
         <div class="container section-header">
-          <h2>Top-10 Trigger Risk Leaderboard</h2>
-          <p>Latest scoring snapshot derived from the trigger registry.</p>
+          <h2>AI health snapshot</h2>
+          <p>Cluster-level sustainability scores sorted by areas of greatest strain.</p>
         </div>
         <div class="container" data-leaderboard>
           <div class="leaderboard-card">
             <p class="leaderboard-status" data-leaderboard-status>
-              Loading latest snapshot…
+              Loading AI cluster health…
             </p>
             <div class="leaderboard-table-wrapper" data-leaderboard-wrapper hidden>
               <table class="leaderboard-table">
-                <caption class="sr-only">Top ten trigger risks ordered by score</caption>
+                <caption class="sr-only">AI cluster sustainability index</caption>
                 <thead>
                   <tr>
                     <th scope="col">Rank</th>
-                    <th scope="col">Trigger</th>
-                    <th scope="col">Score</th>
+                    <th scope="col">Cluster</th>
+                    <th scope="col">NSI</th>
+                    <th scope="col">Bullish</th>
+                    <th scope="col">Bearish</th>
                     <th scope="col">Phase</th>
-                    <th scope="col">Last Update</th>
+                    <th scope="col">Confidence</th>
                   </tr>
                 </thead>
                 <tbody data-leaderboard-body></tbody>
               </table>
             </div>
             <div class="leaderboard-meta">
-              <p class="leaderboard-note" data-leaderboard-note></p>
+              <p class="leaderboard-note" data-leaderboard-note hidden></p>
               <p class="leaderboard-asof" data-leaderboard-asof></p>
             </div>
           </div>
@@ -143,198 +120,80 @@
 
       <section id="latest" class="section section--light">
         <div class="container section-header">
-          <h2>Latest briefing notes</h2>
+          <h2>Latest briefings</h2>
           <p>
-            High-signal developments from the last two weeks. Tap through for the
-            full write-up, data, and positioning cues.
+            Fresh write-ups on the key developments shifting the sustainability outlook. Each
+            briefing contains rationale, indicators, and tripwires for the next move.
           </p>
         </div>
         <div class="container cards-grid" id="latest-cards" data-limit="6"></div>
         <div class="container latest-archive-link">
-          <a class="btn btn-secondary" href="posts/index.html">Browse all briefings</a>
+          <a class="btn btn-secondary" href="posts/index.html">Browse the archive</a>
         </div>
       </section>
 
-      <section id="dashboard" class="section">
+      <section id="metrics" class="section">
         <div class="container section-header">
-          <h2>Trigger dashboard</h2>
+          <h2>Hard metrics dashboard</h2>
           <p>
-            A condensed view of the core macro pillars being monitored. The
-            gauges blend high-frequency data with structural cycle indicators.
+            Quantitative checks that anchor the narrative: coverage ratios, secured power, utilisation,
+            margins, and financing headroom.
           </p>
         </div>
-        <div class="container dashboard-grid">
-          <div class="dashboard-card">
-            <h3>Liquidity</h3>
-            <p>Dealer balance sheets, cross-border flows, central bank balance sheets.</p>
-            <div class="risk-meter" aria-label="Liquidity trigger risk meter">
-              <span class="risk-meter__label">Current status</span>
-              <span class="risk-meter__value risk-meter__value--high">High stress</span>
-            </div>
-            <ul class="list">
-              <li>
-                <a href="posts/gulf_port_outage.html"
-                  >36-hour outage at a key Gulf port stalled container throughput</a
-                >,
-                compounding global shipping bottlenecks.
-              </li>
-              <li>
-                <a href="posts/freight-slump-panama.html"
-                  >Shanghai export container index fell ~40% in early 2025</a
-                >,
-                pointing to softer trade financing flows.
-              </li>
-              <li>
-                <a href="posts/panama-canal-drought.html"
-                  >Panama Canal transit caps (32 ships/day)</a
-                >
-                continue to tie up shipping liquidity.
-              </li>
-            </ul>
-          </div>
-
-          <div class="dashboard-card">
-            <h3>Credit</h3>
-            <p>Bank lending standards, private credit spreads, default velocity.</p>
-            <div class="risk-meter" aria-label="Credit trigger risk meter">
-              <span class="risk-meter__label">Current status</span>
-              <span class="risk-meter__value risk-meter__value--elevated">Elevated</span>
-            </div>
-            <ul class="list">
-              <li>
-                <a href="posts/office-crash-defaults.html"
-                  >Office CMBS delinquencies hit ~11.7%</a
-                >,
-                the highest on record.
-              </li>
-              <li>
-                <a href="posts/regional-banks-cre-maturity.html"
-                  >About $2&nbsp;trillion in CRE loans mature by end-2025</a
-                >,
-                mostly sitting on regional bank books.
-              </li>
-              <li>
-                <a href="posts/property-slump-defaults.html"
-                  >Chinese developers remain in default workouts</a
-                >,
-                keeping spillover risk elevated.
-              </li>
-            </ul>
-          </div>
-
-          <div class="dashboard-card">
-            <h3>Fiscal &amp; Policy</h3>
-            <p>Treasury issuance, fiscal impulse, and policy space for rescue.</p>
-            <div class="risk-meter" aria-label="Fiscal trigger risk meter">
-              <span class="risk-meter__label">Current status</span>
-              <span class="risk-meter__value risk-meter__value--watch">On watch</span>
-            </div>
-            <ul class="list">
-              <li>
-                <a href="posts/france-italy-yields.html"
-                  >France&rsquo;s 10-year yield now matches Italy around 3.5%</a
-                >,
-                underscoring fiscal slippage.
-              </li>
-              <li>
-                <a href="posts/thailand_sovereign_watch.html"
-                  >Fitch placed Thailand on watch negative</a
-                >,
-                pushing regional funding costs higher.
-              </li>
-              <li>
-                <a href="posts/local-debt-timebomb.html"
-                  >LGFVs carry roughly &yen;58&nbsp;trillion in hidden debt</a
-                >,
-                limiting Beijing&rsquo;s stimulus room.
-              </li>
-            </ul>
-          </div>
-
-          <div class="dashboard-card">
-            <h3>Sentiment</h3>
-            <p>Risk appetite, housing turnover, and speculative positioning.</p>
-            <div class="risk-meter" aria-label="Sentiment trigger risk meter">
-              <span class="risk-meter__label">Current status</span>
-              <span class="risk-meter__value risk-meter__value--moderate">Moderate</span>
-            </div>
-            <ul class="list">
-              <li>
-                <a href="posts/zero-day-volatility.html"
-                  >0DTE options now dominate S&amp;P&nbsp;500 volumes</a
-                >,
-                keeping crash-feedback risk in focus.
-              </li>
-              <li>
-                <a href="posts/avian-flu-mammal-spillover.html"
-                  >H5N1 spillovers into mammals</a
-                >
-                sustain a low-probability, high-impact shock narrative.
-              </li>
-              <li>
-                <a href="posts/2025-09-24-daily-brief.html"
-                  >Latest monitor flags grid, sovereign, and supply chain shocks</a
-                >,
-                keeping risk appetite muted.
-              </li>
-            </ul>
-          </div>
-        </div>
+        <div class="container dashboard-grid" data-hard-metrics></div>
       </section>
 
       <section id="playbook" class="section section--accent">
         <div class="container playbook-grid">
           <div class="playbook-intro">
-            <h2>Playbook for a late-cycle break</h2>
+            <h2>How to use this monitor</h2>
             <p>
-              This framework blends structural signals (demographics, land and
-              credit cycles) with real-time data (liquidity, policy, risk
-              appetite). Triggers are mapped to probability bands and suggested
-              portfolio shifts.
+              The sustainability index blends qualitative scoring with weighted hard data. Watch for
+              clusters slipping below neutral (NSI &lt; 50), track how long a stress state persists, and
+              pair hard metrics with event briefings to gauge whether shocks are structural or transient.
             </p>
           </div>
           <div class="playbook-card">
-            <h3>Trigger tiers</h3>
+            <h3>Signal ladder</h3>
             <ol>
               <li>
-                <strong>Pressure building:</strong> Early warning from liquidity and
-                balance sheet data.
+                <strong>Resilience:</strong> Bullish momentum outweighs headwinds. NSI &gt; 60 with
+                improving hard metrics.
               </li>
               <li>
-                <strong>Cracks spreading:</strong> Credit and funding disruptions
-                move beyond niche markets.
+                <strong>Watch:</strong> Mixed signals. NSI between 45–60; confirm with utilisation,
+                margins, and policy stability.
               </li>
               <li>
-                <strong>Break point:</strong> Feedback loop hits real economy and
-                policy makers react.
+                <strong>Critical:</strong> Persistent deficits. NSI &lt; 45 or hard metrics in tier X/Y;
+                review contingency plans.
               </li>
             </ol>
             <p>
-              Every signal is plotted against these tiers to keep the roadmap
-              clear even when noise is high.
+              Revisit portfolio positioning, vendor risk, and infrastructure timelines as clusters
+              migrate across tiers.
             </p>
           </div>
         </div>
       </section>
-
     </main>
 
     <footer class="site-footer">
       <div class="container footer-inner">
         <div>
-          <a class="logo" href="#top">Trigger Risk Monitor</a>
+          <a class="logo" href="#top">AI Sustainability Monitor</a>
           <p class="footer-note">
-            Independent research on the 18.6-year land cycle. Built for investors
-            who want to see turning points before the crowd.
+            Tracking infrastructure, demand, and policy signals shaping the AI boom.
           </p>
         </div>
         <div class="footer-links">
-          <a href="#latest">Latest briefings</a>
+          <a href="#health">AI health</a>
+          <a href="#metrics">Hard metrics</a>
+          <a href="posts/index.html">Briefing archive</a>
           <a href="methodology.html">Methodology</a>
           <a href="glossary.html">Glossary</a>
-          <a href="#dashboard">Trigger dashboard</a>
+          <a href="mailto:signals@aisustainability.monitor">Contact</a>
           <a href="#playbook">Playbook</a>
-          <a href="posts/index.html">All briefings</a>
         </div>
       </div>
     </footer>
@@ -351,9 +210,16 @@
         const asOfEl = container.querySelector('[data-leaderboard-asof]');
         const noteEl = container.querySelector('[data-leaderboard-note]');
         const tableWrapper = container.querySelector('[data-leaderboard-wrapper]');
+        const heroState = document.querySelector('[data-overall-state]');
+        const heroScore = document.querySelector('[data-overall-score]');
+        const heroBullish = document.querySelector('[data-overall-bullish]');
+        const heroBearish = document.querySelector('[data-overall-bearish]');
+        const heroNote = document.querySelector('[data-methodology-note]');
+        const heroList = document.querySelector('[data-top-pressures]');
+        const metricsContainer = document.querySelector('[data-hard-metrics]');
 
         const normalizeKey = (value) =>
-          value ? value.toString().trim().toLowerCase() : '';
+          value ? value.toString().trim().toLowerCase().replace(/[\s/]+/g, '_') : '';
 
         const showStatus = (message) => {
           if (!status) return;
@@ -397,7 +263,42 @@
           }
           hideTable();
           clearMeta();
-          showStatus('No items yet.');
+          showStatus('No clusters available yet.');
+        };
+
+        const tierLabels = {
+          x: 'Tier X — critical gap',
+          y: 'Tier Y — watch',
+          z: 'Tier Z — stable',
+          ok: 'On track',
+        };
+
+        const formatPhase = (value) => {
+          if (!value) return '—';
+          const text = value.toString().trim();
+          return text.charAt(0).toUpperCase() + text.slice(1);
+        };
+
+        const formatConfidence = (value) => {
+          if (!value) return '—';
+          const text = value.toString().trim();
+          return text.charAt(0).toUpperCase() + text.slice(1);
+        };
+
+        const formatNumber = (value, digits = 1) => {
+          if (value === null || value === undefined || Number.isNaN(Number(value))) {
+            return '—';
+          }
+          return Number(value).toFixed(digits);
+        };
+
+        const slugMap = new Map();
+        const rememberSlug = (clusterValue, slug) => {
+          const key = normalizeKey(clusterValue);
+          if (!key || !slug || slugMap.has(key)) {
+            return;
+          }
+          slugMap.set(key, slug.toString().trim());
         };
 
         Promise.all([
@@ -414,48 +315,157 @@
             .then((response) => (response.ok ? response.json() : null))
             .catch(() => null),
         ])
-          .then(([data, latest, archive]) => {
-            if (!data || !Array.isArray(data.risks) || data.risks.length === 0) {
-              showEmpty();
-              return;
-            }
-
-            const slugMap = new Map();
-            const addSlug = (title, slug) => {
-              const titleKey = normalizeKey(title);
-              const slugValue = slug ? String(slug).trim() : '';
-              if (titleKey && slugValue && !slugMap.has(titleKey)) {
-                slugMap.set(titleKey, slugValue);
-              }
-            };
-
-            if (archive && Array.isArray(archive.items)) {
-              archive.items.forEach((item) => {
-                if (item) {
-                  addSlug(item.title, item.slug);
-                }
-              });
-            }
-
-            if (latest && Array.isArray(latest.items)) {
-              latest.items.forEach((item) => {
-                if (item) {
-                  addSlug(item.title, item.slug);
-                }
-              });
-            }
-
-            const risksToShow = data.risks.slice(0, 10);
-            if (!risksToShow.length) {
+          .then(([snapshot, latest, archive]) => {
+            if (!snapshot || !Array.isArray(snapshot.clusters) || !snapshot.clusters.length) {
               showEmpty();
               return;
             }
 
             hideStatus();
 
+            if (latest && Array.isArray(latest.items)) {
+              latest.items.forEach((item) => {
+                if (!item) return;
+                rememberSlug(item.cluster, item.slug);
+              });
+            }
+            if (archive && Array.isArray(archive.items)) {
+              archive.items.forEach((item) => {
+                if (!item) return;
+                rememberSlug(item.cluster, item.slug);
+              });
+            }
+
+            snapshot.clusters.forEach((cluster) => {
+              rememberSlug(cluster && cluster.id, cluster && cluster.latest_slug);
+            });
+
+            const overall = snapshot.overall || {};
+            if (heroState) {
+              heroState.textContent = overall.state ? overall.state.toString().toUpperCase() : '—';
+            }
+            if (heroScore) {
+              heroScore.textContent = overall.sustainability_index !== undefined
+                ? `${formatNumber(overall.sustainability_index)} NSI`
+                : '—';
+            }
+            if (heroBullish) {
+              heroBullish.textContent = overall.bullish_score !== undefined
+                ? formatNumber(overall.bullish_score, 0)
+                : '—';
+            }
+            if (heroBearish) {
+              heroBearish.textContent = overall.bearish_score !== undefined
+                ? formatNumber(overall.bearish_score, 0)
+                : '—';
+            }
+            if (heroNote) {
+              const note = snapshot.methodology_note ? snapshot.methodology_note.toString().trim() : '';
+              heroNote.textContent = note || 'Methodology note unavailable.';
+            }
+            if (heroList) {
+              heroList.innerHTML = '';
+              const items = Array.isArray(snapshot.top_pressures) ? snapshot.top_pressures : [];
+              items.forEach((item) => {
+                const li = document.createElement('li');
+                const label = item && item.name ? item.name : 'Cluster';
+                const slug = item && item.latest_slug
+                  ? item.latest_slug
+                  : slugMap.get(normalizeKey(item && (item.id || item.name)));
+                const nsValue = formatNumber(item && item.sustainability_index);
+                if (slug) {
+                  const link = document.createElement('a');
+                  link.href = `posts/${slug}.html`;
+                  link.textContent = label;
+                  li.appendChild(link);
+                } else {
+                  li.textContent = label;
+                }
+                const badge = document.createElement('strong');
+                badge.className = 'indicator indicator--watch';
+                badge.textContent = `${nsValue} NSI`;
+                li.appendChild(badge);
+                heroList.appendChild(li);
+              });
+              if (!heroList.children.length) {
+                const li = document.createElement('li');
+                li.textContent = 'Waiting for next packet update.';
+                heroList.appendChild(li);
+              }
+            }
+
+            if (metricsContainer && snapshot.hard_metrics) {
+              metricsContainer.innerHTML = '';
+              const order = ['ccr', 'psr', 'uei', 'mg', 'fh'];
+              const keys = order.filter((key) => Object.prototype.hasOwnProperty.call(snapshot.hard_metrics, key));
+              keys.forEach((key) => {
+                const entry = snapshot.hard_metrics[key];
+                const card = document.createElement('article');
+                card.className = 'dashboard-card';
+
+                const title = document.createElement('h3');
+                title.textContent = entry.label || key.toUpperCase();
+                card.appendChild(title);
+
+                const value = document.createElement('p');
+                value.className = 'metric-value';
+                value.textContent = entry.display_value || '—';
+                card.appendChild(value);
+
+                const tier = document.createElement('p');
+                tier.className = 'metric-tier';
+                const tierKey = entry.tier ? entry.tier.toString().toLowerCase() : '';
+                if (tierKey) {
+                  tier.classList.add(`metric-tier--${tierKey}`);
+                }
+                tier.textContent = tierLabels[tierKey] || (entry.tier ? `Tier ${entry.tier}` : '—');
+                card.appendChild(tier);
+
+                if (entry.note) {
+                  const note = document.createElement('p');
+                  note.className = 'metric-note';
+                  note.textContent = entry.note;
+                  card.appendChild(note);
+                }
+
+                if (Array.isArray(entry.sources) && entry.sources.length) {
+                  const list = document.createElement('ul');
+                  list.className = 'list';
+                  entry.sources.forEach((sourceUrl) => {
+                    if (!sourceUrl) return;
+                    const item = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = sourceUrl;
+                    try {
+                      const url = new URL(sourceUrl);
+                      link.textContent = url.host.replace(/^www\./, '');
+                    } catch (error) {
+                      link.textContent = sourceUrl;
+                    }
+                    item.appendChild(link);
+                    list.appendChild(item);
+                  });
+                  card.appendChild(list);
+                }
+
+                metricsContainer.appendChild(card);
+              });
+            }
+
+            const clusters = snapshot.clusters.slice().sort((a, b) => {
+              const aIndex = a && a.sustainability_index !== undefined ? Number(a.sustainability_index) : 50;
+              const bIndex = b && b.sustainability_index !== undefined ? Number(b.sustainability_index) : 50;
+              return aIndex - bIndex;
+            });
+
+            if (!clusters.length) {
+              showEmpty();
+              return;
+            }
+
             if (tableBody) {
               tableBody.innerHTML = '';
-              risksToShow.forEach((risk, index) => {
+              clusters.forEach((cluster, index) => {
                 const row = document.createElement('tr');
                 row.className = 'leaderboard-row';
                 if (index < 3) {
@@ -474,92 +484,67 @@
                 rankCell.appendChild(rankBadge);
                 row.appendChild(rankCell);
 
-                const triggerCell = document.createElement('td');
-                triggerCell.className = 'leaderboard-cell leaderboard-cell--trigger';
-                triggerCell.setAttribute('data-label', 'Trigger');
+                const clusterCell = document.createElement('td');
+                clusterCell.className = 'leaderboard-cell leaderboard-cell--trigger';
+                clusterCell.setAttribute('data-label', 'Cluster');
                 const triggerWrapper = document.createElement('div');
                 triggerWrapper.className = 'leaderboard-trigger';
-                const riskName = risk && risk.name ? String(risk.name) : 'Unnamed risk';
-                const titleKey = normalizeKey(riskName);
-                const slug = slugMap.get(titleKey);
+                const clusterLabel = cluster && cluster.name ? cluster.name : 'Cluster';
+                const slug = slugMap.get(normalizeKey(cluster && (cluster.id || cluster.name)));
                 if (slug) {
                   const link = document.createElement('a');
                   link.className = 'leaderboard-title';
                   link.href = `posts/${slug}.html`;
-                  link.textContent = riskName;
+                  link.textContent = clusterLabel;
                   triggerWrapper.appendChild(link);
                 } else {
-                  const titleSpan = document.createElement('span');
-                  titleSpan.className = 'leaderboard-title';
-                  titleSpan.textContent = riskName;
-                  triggerWrapper.appendChild(titleSpan);
+                  const span = document.createElement('span');
+                  span.className = 'leaderboard-title';
+                  span.textContent = clusterLabel;
+                  triggerWrapper.appendChild(span);
                 }
-                if (risk && risk.cluster) {
-                  const clusterBadge = document.createElement('span');
-                  clusterBadge.className = 'leaderboard-cluster';
-                  clusterBadge.textContent = String(risk.cluster);
-                  triggerWrapper.appendChild(clusterBadge);
-                }
-                triggerCell.appendChild(triggerWrapper);
-                row.appendChild(triggerCell);
+                clusterCell.appendChild(triggerWrapper);
+                row.appendChild(clusterCell);
 
-                const scoreCell = document.createElement('td');
-                scoreCell.className = 'leaderboard-cell leaderboard-cell--score';
-                scoreCell.setAttribute('data-label', 'Score');
-                const scoreWrapper = document.createElement('div');
-                scoreWrapper.className = 'leaderboard-score';
-                const scoreValueEl = document.createElement('span');
-                scoreValueEl.className = 'leaderboard-score__value';
-                const numericScore = Number.parseFloat(risk && risk.score);
-                if (Number.isFinite(numericScore)) {
-                  const rounded = Number.isInteger(numericScore)
-                    ? numericScore.toString()
-                    : numericScore.toFixed(1);
-                  scoreValueEl.textContent = rounded;
-                } else {
-                  scoreValueEl.textContent = '—';
-                }
-                scoreWrapper.appendChild(scoreValueEl);
-                const meter = document.createElement('div');
-                meter.className = 'leaderboard-score__meter';
-                meter.setAttribute('aria-hidden', 'true');
-                const fill = document.createElement('span');
-                fill.className = 'leaderboard-score__fill';
-                if (Number.isFinite(numericScore)) {
-                  const clampedScore = Math.max(0, Math.min(100, numericScore));
-                  fill.style.width = `${clampedScore}%`;
-                } else {
-                  fill.style.width = '0%';
-                  meter.classList.add('is-empty');
-                }
-                meter.appendChild(fill);
-                scoreWrapper.appendChild(meter);
-                scoreCell.appendChild(scoreWrapper);
-                row.appendChild(scoreCell);
+                const nsiCell = document.createElement('td');
+                nsiCell.className = 'leaderboard-cell leaderboard-cell--score';
+                nsiCell.setAttribute('data-label', 'NSI');
+                const nsiValue = document.createElement('span');
+                nsiValue.className = 'leaderboard-score__value';
+                nsiValue.textContent = `${formatNumber(cluster && cluster.sustainability_index)} NSI`;
+                nsiCell.appendChild(nsiValue);
+                row.appendChild(nsiCell);
+
+                const bullCell = document.createElement('td');
+                bullCell.className = 'leaderboard-cell leaderboard-cell--bull';
+                bullCell.setAttribute('data-label', 'Bullish');
+                bullCell.textContent = formatNumber(cluster && cluster.bullish_score, 0);
+                row.appendChild(bullCell);
+
+                const bearCell = document.createElement('td');
+                bearCell.className = 'leaderboard-cell leaderboard-cell--bear';
+                bearCell.setAttribute('data-label', 'Bearish');
+                bearCell.textContent = formatNumber(cluster && cluster.bearish_score, 0);
+                row.appendChild(bearCell);
 
                 const phaseCell = document.createElement('td');
                 phaseCell.className = 'leaderboard-cell leaderboard-cell--phase';
                 phaseCell.setAttribute('data-label', 'Phase');
-                const rawPhase = risk && risk.phase ? String(risk.phase) : '';
-                const phaseText = rawPhase
-                  ? rawPhase.charAt(0).toUpperCase() + rawPhase.slice(1)
-                  : '—';
-                const phaseKey = normalizeKey(rawPhase).replace(/[^a-z0-9]+/g, '-');
                 const phaseBadge = document.createElement('span');
                 phaseBadge.className = 'leaderboard-phase';
+                const phaseKey = cluster && cluster.phase ? cluster.phase.toString().trim().toLowerCase() : '';
                 if (phaseKey) {
                   phaseBadge.classList.add(`leaderboard-phase--${phaseKey}`);
                 }
-                phaseBadge.textContent = phaseText;
+                phaseBadge.textContent = formatPhase(cluster && cluster.phase);
                 phaseCell.appendChild(phaseBadge);
                 row.appendChild(phaseCell);
 
-                const updatedCell = document.createElement('td');
-                updatedCell.className = 'leaderboard-cell leaderboard-cell--updated';
-                updatedCell.setAttribute('data-label', 'Last Update');
-                const updatedText = risk && risk.last_updated ? String(risk.last_updated) : '—';
-                updatedCell.textContent = updatedText;
-                row.appendChild(updatedCell);
+                const confidenceCell = document.createElement('td');
+                confidenceCell.className = 'leaderboard-cell leaderboard-cell--confidence';
+                confidenceCell.setAttribute('data-label', 'Confidence');
+                confidenceCell.textContent = formatConfidence(cluster && cluster.confidence);
+                row.appendChild(confidenceCell);
 
                 tableBody.appendChild(row);
               });
@@ -568,13 +553,18 @@
             showTable();
 
             if (noteEl) {
-              const note = data.note ? String(data.note) : '';
-              noteEl.textContent = note;
-              noteEl.hidden = !note;
+              const thresholds = snapshot.thresholds || {};
+              const parts = Object.entries(thresholds)
+                .filter(([, value]) => value !== undefined && value !== null)
+                .map(([key, value]) => `${key}: ${value}`);
+              if (parts.length) {
+                noteEl.textContent = `Thresholds · ${parts.join(' | ')}`;
+                noteEl.hidden = false;
+              }
             }
 
             if (asOfEl) {
-              const asOfValue = data.as_of ? `As of ${data.as_of}` : '';
+              const asOfValue = snapshot.as_of ? `Updated ${snapshot.as_of}` : '';
               asOfEl.textContent = asOfValue;
             }
           })
@@ -584,6 +574,6 @@
       });
     </script>
     <script src="assets/js/main.js" defer></script>
-	<script src="assets/js/latest.js"></script>
+    <script src="assets/js/latest.js" defer></script>
   </body>
 </html>
