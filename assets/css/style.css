@@ -230,6 +230,13 @@ img {
   white-space: nowrap;
 }
 
+.leaderboard-cell--bull,
+.leaderboard-cell--bear,
+.leaderboard-cell--confidence {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
 .leaderboard-cell--phase {
   text-align: center;
 }
@@ -495,7 +502,10 @@ img {
   }
 
   .leaderboard-cell--phase,
-  .leaderboard-cell--updated {
+  .leaderboard-cell--updated,
+  .leaderboard-cell--bull,
+  .leaderboard-cell--bear,
+  .leaderboard-cell--confidence {
     justify-content: space-between;
     align-items: center;
   }
@@ -511,6 +521,12 @@ img {
   }
 
   .leaderboard-cell--updated::before {
+    margin-top: 0;
+  }
+
+  .leaderboard-cell--bull::before,
+  .leaderboard-cell--bear::before,
+  .leaderboard-cell--confidence::before {
     margin-top: 0;
   }
 
@@ -689,6 +705,38 @@ img {
   font-weight: 500;
 }
 
+.hero-card__stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0 0 1.25rem;
+  color: rgba(226, 232, 240, 0.85);
+}
+
+.hero-card__stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.hero-card__stats dt {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.6);
+}
+
+.hero-card__stats dd {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
 .hero-card__indicators {
   list-style: none;
   padding: 0;
@@ -727,6 +775,18 @@ img {
 
 .indicator--limited {
   background: #f1f5f9;
+}
+
+.indicator--watch {
+  background: rgba(250, 204, 21, 0.28);
+}
+
+.indicator--critical {
+  background: rgba(248, 113, 113, 0.35);
+}
+
+.indicator--resilient {
+  background: rgba(56, 189, 248, 0.35);
 }
 
 .hero-card__note {
@@ -870,6 +930,39 @@ img {
 .dashboard-card p {
   margin: 0;
   color: rgba(226, 232, 240, 0.85);
+}
+
+.metric-value {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.metric-tier {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.75);
+}
+
+.metric-tier--x {
+  color: rgba(248, 113, 113, 0.9);
+}
+
+.metric-tier--y {
+  color: rgba(250, 204, 21, 0.85);
+}
+
+.metric-tier--z,
+.metric-tier--ok {
+  color: rgba(56, 189, 248, 0.85);
+}
+
+.metric-note {
+  font-size: 0.95rem;
+  color: rgba(226, 232, 240, 0.8);
+  line-height: 1.5;
 }
 
 .list {
@@ -1128,6 +1221,10 @@ img {
 
   .hero-card {
     padding: 1.75rem;
+  }
+
+  .hero-card__stats {
+    grid-template-columns: 1fr;
   }
 
   .post-card,

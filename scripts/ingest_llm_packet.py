@@ -13,11 +13,71 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 from urllib.parse import urlsplit, urlunsplit
 
-REQUIRED_PACKET_KEYS = {"as_of", "clusters", "events_update", "post"}
+REQUIRED_PACKET_KEYS = {
+    "as_of",
+    "clusters",
+    "events_update",
+    "post",
+    "overall",
+    "hard_metrics_summary",
+}
 WATCH_PHASES = {"watch", "elevated", "critical"}
 CONFIDENCE_ORDER = {"high": 3, "medium": 2, "low": 1}
 
 
+def compute_sustainability_index(bullish: Any, bearish: Any) -> float:
+    """Return a bounded sustainability index from bullish and bearish inputs."""
+
+    try:
+        bullish_score = float(bullish)
+    except (TypeError, ValueError):
+        bullish_score = 0.0
+
+    try:
+        bearish_score = float(bearish)
+    except (TypeError, ValueError):
+        bearish_score = 0.0
+
+    index = 50.0 + 0.5 * (bullish_score - bearish_score)
+    return max(0.0, min(100.0, index))
+
+
+def normalize_cluster_key(value: Any) -> str:
+    if value is None:
+        return ""
+    return normalize_token(value, case="lower", collapse_delimiters=False)
+
+
+METRIC_LABELS = {
+    "ccr": "Capital Coverage Ratio (CCR)",
+    "psr": "Power Security Ratio (PSR)",
+    "uei": "Utilisation Efficiency Index (UEI)",
+    "mg": "Operating Margin (MG)",
+    "fh": "Financing Headroom (ROIC – WACC)",
+}
+
+METRIC_VALUE_FIELDS = {
+    "ccr": ("value", "ratio"),
+    "psr": ("value", "ratio"),
+    "uei": ("utilization_pct", "percent"),
+    "mg": ("margin_pct", "percent"),
+    "fh": ("roic_minus_wacc_bps", "bps"),
+}
+
+
+def format_metric_value(raw: Any, kind: str) -> Optional[str]:
+    try:
+        value = float(raw)
+    except (TypeError, ValueError):
+        return None
+
+    if kind == "percent":
+        return f"{value:.0f}%"
+    if kind == "bps":
+        return f"{value:.0f} bps"
+    if kind == "ratio":
+        return f"{value:.2f}×"
+    return str(value)
 def repo_root() -> Path:
     return Path(__file__).resolve().parent.parent
 
@@ -209,11 +269,11 @@ def render_score_chip(score: Optional[Any]) -> Optional[str]:
     if score is None:
         return None
     score_value = clamp_score(score)
-    text = f"Score: {int(round(score_value))}"
+    text = f"NSI: {score_value:.1f}"
     return render_glossary_link(
         text,
-        "glossary-score",
-        preview_label="Glossary → Score methodology",
+        "glossary-nsi",
+        preview_label="Glossary → Sustainability index",
     )
 
 
@@ -296,7 +356,7 @@ def render_post_page(
   <body>
     <header class=\"site-header\" id=\"top\">
       <div class=\"container header-inner\">
-        <a class=\"logo\" href=\"../index.html\">Trigger Risk Monitor</a>
+        <a class=\"logo\" href=\"../index.html\">AI Sustainability Monitor</a>
         <button class=\"nav-toggle\" aria-expanded=\"false\" aria-controls=\"site-nav\">
           <span class=\"sr-only\">Toggle navigation</span>
           <span class=\"nav-toggle__bar\"></span>
@@ -305,12 +365,12 @@ def render_post_page(
         </button>
         <nav id=\"site-nav\" class=\"site-nav\" aria-label=\"Primary\">
           <ul>
-            <li><a href=\"../index.html#leaderboard\">Leaderboard</a></li>
+            <li><a href=\"../index.html#health\">AI health</a></li>
             <li><a href=\"../index.html#latest\">Latest briefings</a></li>
-            <li><a href=\"index.html\">All briefings</a></li>
+            <li><a href=\"index.html\">Briefing archive</a></li>
             <li><a href=\"../methodology.html\">Methodology</a></li>
             <li><a href=\"../glossary.html\">Glossary</a></li>
-            <li><a href=\"../index.html#dashboard\">Trigger dashboard</a></li>
+            <li><a href=\"../index.html#metrics\">Hard metrics</a></li>
             <li><a href=\"../index.html#playbook\">Playbook</a></li>
           </ul>
         </nav>
@@ -336,13 +396,13 @@ def render_post_page(
         <aside class=\"post-sidebar\" aria-label=\"Related content\">
           <div class=\"sidebar-card\">
             <h2>More briefings</h2>
-            <p>Explore the archive for additional trigger risk updates.</p>
+            <p>Dive into the archive for additional sustainability signals.</p>
             <a class=\"btn btn-secondary\" href=\"index.html\">Browse all briefings</a>
           </div>
           <div class=\"sidebar-card\">
             <h2>Stay informed</h2>
-            <p>Track cross-market stress signals with the Trigger dashboard.</p>
-            <a class=\"btn btn-secondary\" href=\"../index.html#dashboard\">View dashboard</a>
+            <p>Watch the grid, capex, and policy gauges on the AI dashboard.</p>
+            <a class=\"btn btn-secondary\" href=\"../index.html#metrics\">View hard metrics</a>
           </div>
         </aside>
       </div>
@@ -351,19 +411,21 @@ def render_post_page(
     <footer class=\"site-footer\">
       <div class=\"container footer-inner\">
         <div>
-          <a class=\"logo\" href=\"#top\">Trigger Risk Monitor</a>
+          <a class=\"logo\" href=\"#top\">AI Sustainability Monitor</a>
           <p class=\"footer-note\">
-            Independent research on the 18.6-year land cycle. Built for investors who want to see turning points before the crowd.
+            Tracking infrastructure, demand, and policy signals shaping the AI boom.
           </p>
         </div>
         <div class=\"footer-links\">
-          <a href=\"index.html\">All briefings</a>
+          <a href=\"../index.html#health\">AI health</a>
+          <a href=\"../index.html#metrics\">Hard metrics</a>
+          <a href=\"index.html\">Briefing archive</a>
           <a href=\"../methodology.html\">Methodology</a>
           <a href=\"../glossary.html\">Glossary</a>
-          <a href=\"mailto:research@triggerrisk.blog\">Contact</a>
-          <a href=\"../index.html#timeline\">Trigger timeline</a>
+          <a href=\"mailto:signals@aisustainability.monitor\">Contact</a>
+          <a href=\"../index.html#playbook\">Playbook</a>
         </div>
-        <p class=\"footer-copy\">&copy; 2024 Trigger Risk Monitor. All rights reserved.</p>
+        <p class=\"footer-copy\">&copy; 2025 AI Sustainability Monitor. All rights reserved.</p>
       </div>
     </footer>
 
@@ -1112,7 +1174,21 @@ def merge_event(
     registry_event["title"] = str(update.get("title", "")).strip()
     registry_event["phase"] = str(update.get("phase", "")).strip()
     registry_event["confidence"] = str(update.get("confidence", "")).strip()
-    registry_event["score"] = clamp_score(update.get("score"))
+    registry_event["bullish_score"] = update.get("bullish_score")
+    registry_event["bearish_score"] = update.get("bearish_score")
+
+    sustainability_index = update.get("sustainability_index")
+    if sustainability_index is None:
+        sustainability_index = compute_sustainability_index(
+            registry_event.get("bullish_score"), registry_event.get("bearish_score")
+        )
+
+    score_value = update.get("score")
+    if score_value is None:
+        score_value = sustainability_index
+
+    registry_event["sustainability_index"] = clamp_score(sustainability_index)
+    registry_event["score"] = clamp_score(score_value)
 
     canonical_source = canonical_fields.get("canonical_source")
     if canonical_source:
@@ -1170,6 +1246,19 @@ def create_event(
     cluster_key = canonical_fields.get("cluster") or "event"
     uid_suffix = fingerprint.split(":", 1)[-1][-12:]
     uid = f"{cluster_key or 'event'}-{uid_suffix}".replace(" ", "-")
+    sustainability_index = update.get("sustainability_index")
+    if sustainability_index is None:
+        sustainability_index = compute_sustainability_index(
+            update.get("bullish_score"), update.get("bearish_score")
+        )
+
+    score_value = update.get("score")
+    if score_value is None:
+        score_value = sustainability_index
+
+    score_clamped = clamp_score(score_value)
+    sustainability_clamped = clamp_score(sustainability_index)
+
     event = {
         "uid": uid,
         "fingerprint": fingerprint,
@@ -1178,7 +1267,10 @@ def create_event(
         "event_type": update.get("event_type") or canonical_fields.get("event_type"),
         "title": str(update.get("title", "")).strip(),
         "phase": str(update.get("phase", "")).strip(),
-        "score": clamp_score(update.get("score")),
+        "score": score_clamped,
+        "sustainability_index": sustainability_clamped,
+        "bullish_score": update.get("bullish_score"),
+        "bearish_score": update.get("bearish_score"),
         "confidence": str(update.get("confidence", "")).strip(),
         "indicators": update.get("indicators") or {},
         "tripwires": dedupe_list(update.get("tripwires") or []),
@@ -1192,7 +1284,7 @@ def create_event(
         ),
         "first_seen": as_of,
         "last_updated": as_of,
-        "history": [{"date": as_of, "score": clamp_score(update.get("score"))}],
+        "history": [{"date": as_of, "score": score_clamped}],
     }
     if canonical_fields.get("canonical_source"):
         event["canonical_source"] = canonical_fields["canonical_source"]
@@ -1239,69 +1331,114 @@ def apply_decay(events: List[Dict[str, Any]], as_of: str) -> None:
         event["history"] = history
 
 
-def build_leaderboard(events: List[Dict[str, Any]], as_of: str) -> Dict[str, Any]:
-    candidates = []
-    for event in events:
-        if (event.get("phase") or "").strip().lower() not in WATCH_PHASES:
-            continue
-        candidates.append(event)
+def build_leaderboard(
+    packet: Dict[str, Any], brief_summaries: List[Dict[str, Any]]
+) -> Dict[str, Any]:
+    """Build the AI health snapshot from the latest packet."""
 
-    def sort_key(item: Dict[str, Any]) -> Any:
-        score = clamp_score(item.get("score"))
-        confidence = (item.get("confidence") or "").strip().lower()
-        confidence_rank = CONFIDENCE_ORDER.get(confidence, 0)
-        last_updated = item.get("last_updated")
-        try:
-            last_date = parse_date(last_updated) if last_updated else date.min
-        except ValueError:
-            last_date = date.min
-        return (-score, -confidence_rank, -last_date.toordinal())
+    as_of = str(packet.get("as_of") or "").strip()
+    thresholds = packet.get("thresholds") or {}
+    methodology_note = packet.get("methodology_note")
 
-    top_events: List[Dict[str, Any]] = []
-    seen_fingerprints: Set[str] = set()
-    seen_titles: Set[str] = set()
-    for event in sorted(candidates, key=sort_key):
-        fingerprint = event.get("fingerprint")
-        if fingerprint and fingerprint in seen_fingerprints:
-            continue
+    overall_raw = packet.get("overall") or {}
+    overall_bullish = overall_raw.get("bullish_score_overall")
+    overall_bearish = overall_raw.get("bearish_score_overall")
+    overall_index = overall_raw.get("sustainability_index")
+    if overall_index is None:
+        overall_index = compute_sustainability_index(overall_bullish, overall_bearish)
 
-        title = normalize_token(event.get("title"), case="lower") if event.get("title") else ""
-        cluster = normalize_token(
-            event.get("cluster"), case="lower", collapse_delimiters=False
+    overall_payload = {
+        "state": overall_raw.get("state"),
+        "bullish_score": overall_bullish,
+        "bearish_score": overall_bearish,
+        "sustainability_index": clamp_score(overall_index),
+        "override_applied": overall_raw.get("override_applied"),
+        "persistence_flag": overall_raw.get("persistence_flag"),
+    }
+
+    brief_by_cluster: Dict[str, Dict[str, Any]] = {}
+    for entry in brief_summaries:
+        cluster_key = normalize_cluster_key(entry.get("cluster"))
+        slug = entry.get("slug")
+        title = entry.get("title")
+        if cluster_key and slug and cluster_key not in brief_by_cluster:
+            brief_by_cluster[cluster_key] = {
+                "slug": slug,
+                "title": title,
+            }
+
+    def normalize_sources(sources: Iterable[str]) -> List[str]:
+        return dedupe_list(canonicalize_url(str(url)) for url in sources or [])
+
+    clusters_payload: List[Dict[str, Any]] = []
+    for cluster in packet.get("clusters") or []:
+        cluster_id = cluster.get("id") or cluster.get("name")
+        cluster_key = normalize_cluster_key(cluster_id)
+        slug_info = brief_by_cluster.get(cluster_key, {})
+        cluster_index = compute_sustainability_index(
+            cluster.get("bullish_score"), cluster.get("bearish_score")
         )
-        title_key = f"{cluster}:{title}" if title else ""
-        if title_key and title_key in seen_titles:
-            continue
 
-        top_events.append(event)
-        if fingerprint:
-            seen_fingerprints.add(fingerprint)
-        elif event.get("uid"):
-            seen_fingerprints.add(str(event.get("uid")))
-        elif event:
-            seen_fingerprints.add(json.dumps(event, sort_keys=True))
-        if title_key:
-            seen_titles.add(title_key)
-        if len(top_events) >= 10:
-            break
-    risks = []
-    for event in top_events:
-        sources = event.get("sources") or []
-        risks.append(
+        clusters_payload.append(
             {
-                "id": event.get("uid"),
-                "name": event.get("title"),
-                "score": clamp_score(event.get("score")),
-                "phase": event.get("phase"),
-                "last_updated": event.get("last_updated"),
-                "cluster": event.get("cluster"),
-                "sources": sources[:4],
+                "id": cluster.get("id"),
+                "name": cluster.get("name"),
+                "phase": cluster.get("phase"),
+                "confidence": cluster.get("confidence"),
+                "bullish_score": cluster.get("bullish_score"),
+                "bearish_score": cluster.get("bearish_score"),
+                "sustainability_index": cluster_index,
+                "rationale": cluster.get("rationale") or [],
+                "indicators": cluster.get("indicators") or {},
+                "sources": normalize_sources(cluster.get("sources") or []),
+                "latest_slug": slug_info.get("slug"),
+                "latest_title": slug_info.get("title"),
             }
         )
+
+    clusters_sorted = sorted(
+        clusters_payload,
+        key=lambda item: item.get("sustainability_index", 50.0),
+    )
+
+    top_pressures = [
+        {
+            "id": item.get("id"),
+            "name": item.get("name"),
+            "phase": item.get("phase"),
+            "sustainability_index": item.get("sustainability_index"),
+            "latest_slug": item.get("latest_slug"),
+        }
+        for item in clusters_sorted[:3]
+    ]
+
+    metrics_raw = packet.get("hard_metrics_summary") or {}
+    metrics_payload: Dict[str, Dict[str, Any]] = {}
+    for key, entry in metrics_raw.items():
+        field, kind = METRIC_VALUE_FIELDS.get(key, ("value", None))
+        raw_value = entry.get(field)
+        display_value = format_metric_value(raw_value, kind) if kind else (
+            str(raw_value) if raw_value is not None else None
+        )
+        metrics_payload[key] = {
+            "id": key,
+            "label": METRIC_LABELS.get(key, key.upper()),
+            "value": raw_value,
+            "display_value": display_value,
+            "tier": entry.get("tier"),
+            "note": entry.get("note"),
+            "sources": normalize_sources(entry.get("sources") or []),
+        }
+
     return {
         "as_of": as_of,
-        "note": "Scores 0–100; 50 baseline",
-        "risks": risks,
+        "note": "Sustainability index (NSI) ranges from 0–100 with 50 as neutral.",
+        "methodology_note": methodology_note,
+        "thresholds": thresholds,
+        "overall": overall_payload,
+        "clusters": clusters_sorted,
+        "top_pressures": top_pressures,
+        "hard_metrics": metrics_payload,
     }
 
 
@@ -1409,12 +1546,24 @@ def ingest_latest_packet() -> None:
                     file=sys.stderr,
                 )
 
+        bullish_score = update.get("bullish_score")
+        bearish_score = update.get("bearish_score")
+        computed_score = update.get("score")
+        sustainability_index = compute_sustainability_index(
+            bullish_score, bearish_score
+        )
+        if computed_score is None:
+            computed_score = sustainability_index
+
         payload = {
             "cluster": fields.get("cluster"),
             "event_type": fields.get("event_type"),
             "title": update.get("title"),
             "phase": update.get("phase"),
-            "score": update.get("score"),
+            "score": computed_score,
+            "bullish_score": bullish_score,
+            "bearish_score": bearish_score,
+            "sustainability_index": sustainability_index,
             "confidence": update.get("confidence"),
             "indicators": update.get("indicators"),
             "tripwires": update.get("tripwires"),
@@ -1441,17 +1590,17 @@ def ingest_latest_packet() -> None:
 
     apply_decay(events, as_of)
 
-    leaderboard = build_leaderboard(events, as_of)
-    dump_json(root / "data" / "leaderboard.json", leaderboard)
-
-    write_post(packet.get("post") or {}, as_of)
-
-    collect_and_write_briefings(
+    written_briefs = collect_and_write_briefings(
         packet,
         events_by_fp,
         resolved_by_uid=resolved_by_uid,
         resolved_by_slug=resolved_by_slug,
     )
+
+    leaderboard = build_leaderboard(packet, written_briefs)
+    dump_json(root / "data" / "leaderboard.json", leaderboard)
+
+    write_post(packet.get("post") or {}, as_of)
 
     registry["last_rebuild"] = as_of
     dump_json(events_path, registry)

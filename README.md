@@ -1,129 +1,161 @@
-# Trigger Risk Monitor
+# AI Sustainability Monitor
 
-A static research log that tracks catalysts capable of puncturing the late stage of the 18.6-year land and credit cycle. The site combines a daily AI research brief with a deterministic ingestion script so that every update, score change, and briefing note is auditable.
+Static reporting stack that tracks whether the current AI investment boom is on sustainable footing. The site ingests structured
+JSON packets, rebuilds the sustainability index, refreshes cluster briefings, and updates hard-metric dashboards so every change
+is deterministic and auditable.
 
 ## Repository layout
 
 | Path | Purpose |
 | --- | --- |
-| `index.html` | Homepage with the Top-10 leaderboard, latest briefings, dashboard gauges, and playbook cards fed by the JSON data registry. |
-| `methodology.html` | Public-facing explanation of the research workflow and scoring framework mirrored by this README. |
-| `glossary.html` | Glossary of cycle-stage language, dashboard states, and scoring fields, including update provenance. |
-| `posts/` | Rendered HTML briefings for individual trigger events and daily posts. Files are regenerated each run by the ingest script. |
-| `data/events.json` | Full trigger registry with every tracked event, including scores, phase, rationale, sources, and history. |
-| `data/leaderboard.json` | Snapshot of the Top-10 highest-risk events served on the homepage leaderboard. |
-| `data/latest_briefings.json` | Lightweight index of the most recent briefing cards displayed in the "Latest briefing notes" section. |
-| `data/briefings_archive.json` | Complete catalogue powering the "All briefings" page with every published write-up. |
-| `data/llm/` | Drop zone for raw ChatGPT Deep Research packets (`YYYY-MM-DD[(-HHMM)].packet.json`). The latest packet for a date drives each ingest cycle. |
-| `assets/` | Site stylesheets, fonts, and the small JavaScript bundle that powers navigation and the newsletter stub. |
-| `scripts/` | Python utilities that validate Deep Research packets and update the JSON registries and posts. |
+| `index.html` | Homepage with the sustainability index hero, cluster health table, latest briefings, and hard-metrics dashboard. |
+| `methodology.html` | Public reference explaining scoring weights, decay logic, and data provenance mirrored in this README. |
+| `glossary.html` | Definitions for index states, confidence bands, tiers, and ingestion fields (with update provenance). |
+| `posts/` | Generated HTML briefings for daily summaries and per-cluster events. Regenerated on every ingest run. |
+| `data/events.json` | Canonical registry of every tracked event with fingerprints, history, rationale, indicators, and sources. |
+| `data/leaderboard.json` | Sustainability snapshot: overall state, cluster NSI values, thresholds, top-pressures list, and hard metrics. |
+| `data/latest_briefings.json` | Lightweight feed powering the “Latest briefings” homepage cards. |
+| `data/briefings_archive.json` | Full archive index used by `posts/index.html` for infinite scrolling of every published briefing. |
+| `data/llm/` | Drop zone for raw Deep Research packets (`YYYY-MM-DD[(-HHMM)].packet.json`); the newest file per day is ingested. |
+| `assets/` | Site styles, favicons, and JavaScript that power navigation, latest-briefing cards, and confirmation links. |
+| `scripts/` | Python utilities that validate packets, dedupe events, compute NSI scores, and regenerate JSON + HTML outputs. |
 
 ## Daily research pipeline
 
-Every publication cycle moves from prompt to production in three repeatable stages.
+Every publication cycle is repeatable and machine-verifiable.
 
-### 1. Prompted deep research
+### 1. Deep research prompt
 
-* Each run begins with the "Bootstrap & Rebase — 18.6-Year Cycle Trigger Monitor" Deep Research brief.
-* The agent scans six standing trigger clusters and focuses on catalysts likely to break in the next one to eight months—think Jay Cooke-style funding shocks, OPEC-like supply squeezes, or Lehman analogues.
-* The prompt locks the researcher to the Europe/Amsterdam timezone, requiring the ISO date in the `as_of` field and preserving event continuity via `fingerprint_fields` (cluster, event type, canonical source, etc.).
-* Analysts must re-score any trigger already present in `data/leaderboard.json`, introduce credible new candidates, favour primary sources, and document rationale, indicators, tripwires, and links.
+* Analysts run the "AI Sustainability Monitor" Deep Research brief focused on six structural clusters (capex, power, semis,
+  unit economics, demand, policy/geopolitics).
+* The prompt requires Amsterdam time, explicit ISO `as_of` dates, and consistent fingerprints so the registry can track events
+  over time.
+* Each update includes both bullish and bearish qualitative scores plus quantitative indicators and primary sources.
 
-### 2. Structured LLM packet
+### 2. Structured packet format
 
-* The agent replies with a deterministic JSON payload saved to `data/llm/`.
-* Required top-level keys are `as_of`, `clusters`, `events_update`, and `post`, with optional `briefings` mirroring the per-event write-ups.
-* Each `events_update` entry includes:
-  * A stable `uid` derived from the fingerprint fields.
-  * Scores (0–100), phases (`watch`, `elevated`, `critical`), confidence, indicators, tripwires, rationale, and canonical sources.
-  * A `brief` object containing a sanitized HTML fragment, title, slug, and optional subtitle for publication.
-* A simplified example:
+The agent responds with deterministic JSON. Required top-level keys are `as_of`, `overall`, `thresholds`, `clusters`,
+`hard_metrics_summary`, `events_update`, and `post`, with optional `briefings` for additional write-ups.
 
-  ```json
-  {
-    "as_of": "2024-05-11",
-    "events_update": [
-      {
-        "uid": "us_cre__liquidity-fractures__2024-05-11",
-        "fingerprint_fields": {
-          "cluster": "US_CRE",
-          "event_type": "funding/liquidity",
-          "canonical_source": "https://trepp.com"
-        },
-        "score": 62,
-        "phase": "elevated",
-        "confidence": "high",
-        "brief": {
-          "slug": "liquidity-fractures",
-          "title": "Liquidity fractures widen in U.S. CRE",
-          "content": "<h2>What changed</h2><p>...</p>"
-        },
-        "sources": ["https://trepp.com/report"]
-      }
-    ],
-    "post": {
-      "slug": "2024-05-11-brief",
-      "title": "Daily Risk Brief — 2024-05-11",
-      "format": "html",
-      "content": "<h2>Top movers</h2><p>...</p>"
+Each `events_update` entry contains fingerprint fields, bullish and bearish scores, phase (`watch`, `elevated`, `critical`),
+confidence, indicators, tripwires, rationale, sources, and an HTML `brief` fragment. Clusters mirror the higher-level view.
+Hard metrics supply unit data (ratios, utilisation, spreads) that anchor the narrative.
+
+A trimmed example:
+
+```json
+{
+  "as_of": "2025-09-28",
+  "overall": {
+    "bullish_score_overall": 58,
+    "bearish_score_overall": 56.3,
+    "sustainability_index": 50.9,
+    "state": "watch"
+  },
+  "thresholds": {"X": 50, "Y": 40, "Z": 30},
+  "clusters": [
+    {
+      "id": "AI_CAPEX",
+      "name": "AI Capex and Capacity",
+      "bullish_score": 65,
+      "bearish_score": 55,
+      "phase": "elevated",
+      "confidence": "medium",
+      "rationale": ["Hyperscalers spent ~$210B on AI data-center capex in 2024"],
+      "indicators": {"latest_capex_guidance_usd_b": 210},
+      "sources": ["https://newmark.com/2025-us-data-center-market-outlook"]
     }
+  ],
+  "hard_metrics_summary": {
+    "ccr": {
+      "value": 0.25,
+      "tier": "x",
+      "note": "Estimated using OpenAI revenue versus depreciation+interest and opex for installed AI capacity"
+    }
+  },
+  "events_update": [
+    {
+      "uid": "AI_CAPEX__hyperscalers-ai-capex-boom__2025-09-28",
+      "fingerprint_fields": {"cluster": "AI_CAPEX", "event_type": "investment_update"},
+      "title": "Hyperscalers Expand AI Capex Amid $7 Trillion Buildout",
+      "phase": "elevated",
+      "bullish_score": 65,
+      "bearish_score": 55,
+      "brief": {"slug": "hyperscalers-ai-capex-boom", "title": "Hyperscalers Expand AI Capex Amid $7 Trillion Buildout"}
+    }
+  ],
+  "post": {
+    "slug": "nsi-daily-brief-2025-09-28",
+    "title": "AI Sustainability Monitor Daily Brief — Watch State",
+    "format": "html",
+    "content": "<h2>Daily Brief</h2><p>…</p>"
   }
-  ```
+}
+```
 
-### 3. Automated ingestion & scoring
+### 3. Deterministic ingest
 
-`scripts/ingest_llm_packet.py` connects the packet to the published site. When executed, it:
+Running `python scripts/ingest_llm_packet.py`:
 
-1. Loads the latest packet for each `as_of` date and performs schema validation.
-2. Normalizes URLs, clamps scores, and standardizes phase and confidence labels.
-3. Builds a SHA-256 fingerprint from `fingerprint_fields` to keep event identities stable between runs.
-4. Merges the update into `data/events.json`, appending score histories, indicators, tripwires, rationale, and source links.
-5. Applies the decay rule (three points per day after a seven-day grace period for watch/elevated/critical events) and rebuilds the Top-10 snapshot in `data/leaderboard.json` using score, confidence, and recency sorting logic.
-6. Writes sanitized HTML briefings to `posts/<slug>.html`, refreshes `data/latest_briefings.json`, expands `data/briefings_archive.json`, and emits the daily post referenced on the homepage.
+1. Selects the newest packet per `as_of` date and validates required keys.
+2. Normalises URLs, clamps derived NSI scores, and canonicalises fingerprints.
+3. Merges updates into `data/events.json`, preserving score history, sources, indicators, and tripwires.
+4. Applies score decay (three points per day after seven days for watch/elevated/critical phases).
+5. Writes/refreshes per-event briefings, latest-briefing feed, and archive index.
+6. Builds the sustainability snapshot (`data/leaderboard.json`) including overall NSI, sorted cluster scores, top-pressure list,
+   thresholds, methodology note, and formatted hard metrics.
+7. Emits the daily post (`posts/<slug>.html`) using the shared template.
 
-The script is deliberately deterministic: running it twice with the same packet produces identical data outputs and briefing files.
+The process is idempotent: ingesting the same packet twice yields byte-identical JSON and HTML outputs.
 
 ## Data lifecycle & reuse
 
-* **Event registry:** `data/events.json` is the canonical record of every trigger, including cumulative score history, rationale, tripwires, confidence, and sources. Analysts can lift this file directly into their own tooling or dashboards.
-* **Leaderboard:** `data/leaderboard.json` contains the current Top-10 used by the homepage table and displays rank, score, phase badge, and last update timestamp.
-* **Latest briefing feed:** `data/latest_briefings.json` is the index for the "Latest briefing notes" cards, making it easy to syndicate the freshest write-ups elsewhere.
-* **Briefings archive:** `data/briefings_archive.json` stores the complete publication history surfaced on the "All briefings" page and can be reused for research timelines.
-* **Published posts:** `posts/` holds both daily summaries and per-event briefings, each wrapped in the shared site chrome with metadata (phase badge, score, cluster, event type, and confidence).
+* **Event registry (`data/events.json`):** Canonical source for every tracked development with fingerprints, score histories,
+  and article provenance.
+* **Sustainability snapshot (`data/leaderboard.json`):** Contains the latest overall NSI, cluster rankings, threshold guidance,
+  top-pressures list, and formatted hard metrics consumed by the homepage.
+* **Latest feed (`data/latest_briefings.json`):** Powers the homepage cards and can syndicate recent briefings elsewhere.
+* **Archive (`data/briefings_archive.json`):** Full publication history used by `posts/index.html` and external dashboards.
+* **Posts (`posts/*.html`):** Daily brief plus individual cluster briefs rendered with consistent chrome and metadata chips.
 
-All JSON outputs are UTF-8 encoded, newline-terminated, and suitable for ingestion by other systems.
+All JSON is UTF-8 encoded, newline-terminated, and safe for downstream automation.
 
 ## Working locally
 
-The project is a static site and needs no build step. To preview it locally:
+The project is pure static HTML/CSS/JS.
 
-1. Install Python 3.9+ (only the standard library is required).
-2. From the repository root, start a simple web server:
+1. Install Python 3.9+ (standard library only).
+2. Start a simple web server from the repo root:
 
    ```bash
    python -m http.server 8000
    ```
 
-3. Visit `http://localhost:8000/index.html` to browse the leaderboard, briefings, and methodology pages.
+3. Visit `http://localhost:8000/index.html` to explore the sustainability dashboard and briefings.
 
 ## Updating data manually
 
-1. Save the latest Deep Research packet into `data/llm/` using the `YYYY-MM-DD.packet.json` naming scheme (append `-HHMM` if multiple runs share a date).
-2. Optionally run `python scripts/check_and_fix_packet.py <path> -o data/llm/<date>.packet.json` to auto-correct minor JSON issues using the sanitizer in `validate_and_fix_llm_packet.py`.
+1. Save the latest Deep Research response as `data/llm/YYYY-MM-DD.packet.json` (append `-HHMM` for multiple intraday packets).
+2. (Optional) Run `python scripts/check_and_fix_packet.py <path> -o data/llm/<date>.packet.json` to auto-correct minor schema
+   issues using the bundled validator.
 3. Execute the ingest script:
 
    ```bash
    python scripts/ingest_llm_packet.py
    ```
 
-4. Commit the regenerated JSON files and posts to publish the update.
+4. Commit regenerated JSON files and posts.
 
-`scripts/ci_acceptance_checks.py` can be used in CI or pre-commit hooks to ensure packets contain required keys, mirrored briefings, and third-person tone before ingestion.
+`scripts/ci_acceptance_checks.py` can be wired into CI/pre-commit to ensure packets include mandatory keys, mirror their briefs,
+use third-person tone, and keep HTML sanitised.
 
-## Contributing & extension ideas
+## Extending the monitor
 
-* Extend the `assets/js/main.js` bundle if you need richer interactivity; it currently handles only the responsive navigation toggle and newsletter stub.
-* Add new sections or visualizations by editing the HTML templates directly—everything is static and self-contained.
-* When adding new automation, prefer deterministic transformations so the audit trail remains intact between runs.
+* Enhance the front-end by editing the static HTML/CSS or extending `assets/js/main.js` (navigation + confirmations) and
+  `assets/js/latest.js` (latest-briefing cards).
+* Add new derived metrics or alternative weightings by building on `scripts/ingest_llm_packet.py`; favour deterministic
+  transforms so audit trails remain intact.
+* Fork the registry (`data/*.json`) to seed your own analytics dashboards or alerting systems.
 
-For a narrative description of the scoring philosophy and decay mechanics, see `methodology.html`—this README mirrors those principles while giving a practical operator's guide to the repository.
+For background on scoring heuristics, decay, and provenance updates, read `methodology.html` and `glossary.html` alongside this
+operator’s guide.
