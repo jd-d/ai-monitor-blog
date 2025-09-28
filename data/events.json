@@ -74,6 +74,151 @@
       ]
     },
     {
+      "uid": "enterprise_demand-dd4a14f40a1e",
+      "fingerprint": "sha256:7f5154bb64389a783b703cd634f20cb2afae91644ed038930893dd4a14f40a1e",
+      "fingerprint_fields": {
+        "cluster": "enterprise_demand",
+        "event_type": "adoption update",
+        "primary_entities": [
+          "mckinsey",
+          "openai",
+          "stanford ai index"
+        ],
+        "geography": [
+          "GLOBAL",
+          "UNITED STATES"
+        ],
+        "instruments": [
+          "AI ADOPTION",
+          "INVESTMENT"
+        ],
+        "mechanism": "demand growth",
+        "canonical_source": "https://hai.stanford.edu"
+      },
+      "cluster": "ENTERPRISE_DEMAND",
+      "event_type": "adoption_update",
+      "title": "Enterprise AI Adoption Grows But Monetization Lags",
+      "phase": "watch",
+      "score": 57.5,
+      "sustainability_index": 57.5,
+      "bullish_score": 65,
+      "bearish_score": 50,
+      "confidence": "medium",
+      "indicators": {
+        "private_ai_investment_b_2024": 109.1,
+        "orgs_using_ai_pct": 78
+      },
+      "tripwires": [
+        "Watch whether more pilots move to production and measure cost savings"
+      ],
+      "rationale": [
+        "U.S. private AI investment hit $109 B in 2024 and generative-AI investment grew 18.7 %.",
+        "AI adoption jumped to 78 % of organisations but only 21 % have redesigned workflows and 31 % of use-cases are in full production.",
+        "OpenAI’s revenue run-rate doubled to about $10 B, showing demand but concentration."
+      ],
+      "sources": [
+        "https://hai.stanford.edu/ai-index/2025-ai-index-report",
+        "https://isg-one.com/state-of-enterprise-ai-adoption-report-2025",
+        "https://hai.stanford.edu"
+      ],
+      "first_seen": "2025-09-28",
+      "last_updated": "2025-09-28",
+      "history": [
+        {
+          "date": "2025-09-28",
+          "score": 57.5
+        }
+      ],
+      "canonical_source": "https://hai.stanford.edu",
+      "article_history": [
+        {
+          "date": "2025-09-28",
+          "title": "Enterprise AI Adoption Grows But Monetization Lags",
+          "score": 57.5,
+          "source": "https://hai.stanford.edu",
+          "sources": [
+            "https://hai.stanford.edu/ai-index/2025-ai-index-report",
+            "https://isg-one.com/state-of-enterprise-ai-adoption-report-2025",
+            "https://hai.stanford.edu"
+          ]
+        }
+      ]
+    },
+    {
+      "uid": "policy_geopolitics-c6985b356aa3",
+      "fingerprint": "sha256:ebfd52c65f207c9988a866ed8125479d9877a0cf738bd44ca760c6985b356aa3",
+      "fingerprint_fields": {
+        "cluster": "policy_geopolitics",
+        "event_type": "policy update",
+        "primary_entities": [
+          "china",
+          "eu",
+          "united states"
+        ],
+        "geography": [
+          "CHINA",
+          "EUROPE",
+          "UNITED STATES"
+        ],
+        "instruments": [
+          "AI ACT",
+          "CHIPS ACT",
+          "EXPORT CONTROLS"
+        ],
+        "mechanism": "policy and geopolitics",
+        "canonical_source": "https://digital-strategy.ec.europa.eu"
+      },
+      "cluster": "POLICY_GEOPOLITICS",
+      "event_type": "policy_update",
+      "title": "Regulation and Geopolitics Reshape AI Landscape",
+      "phase": "watch",
+      "score": 47.5,
+      "sustainability_index": 47.5,
+      "bullish_score": 55,
+      "bearish_score": 60,
+      "confidence": "medium",
+      "indicators": {
+        "eu_chips_act_funding_eur_b": 43,
+        "us_chips_act_subsidies_b": 39
+      },
+      "tripwires": [
+        "Monitor further export-control changes, AI Act implementation and potential repeal of U.S. subsidies"
+      ],
+      "rationale": [
+        "The EU AI Act imposes a risk-based regulatory framework and bans certain high-risk practices.",
+        "The EU Chips Act aims to raise Europe’s semiconductor share to 20 % with €43 billion in funding.",
+        "The U.S. Chips Act provides $39 billion in subsidies but faces efforts to repeal it.",
+        "U.S. export controls restrict AI chip sales to countries of concern."
+      ],
+      "sources": [
+        "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+        "https://www.reuters.com/technology/trump-wants-kill-527-billion-semiconductor-chips-subsidy-law-2025-03-05",
+        "https://digital-strategy.ec.europa.eu"
+      ],
+      "first_seen": "2025-09-28",
+      "last_updated": "2025-09-28",
+      "history": [
+        {
+          "date": "2025-09-28",
+          "score": 47.5
+        }
+      ],
+      "canonical_source": "https://digital-strategy.ec.europa.eu",
+      "article_history": [
+        {
+          "date": "2025-09-28",
+          "title": "Regulation and Geopolitics Reshape AI Landscape",
+          "score": 47.5,
+          "source": "https://digital-strategy.ec.europa.eu",
+          "sources": [
+            "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+            "https://www.reuters.com/technology/trump-wants-kill-527-billion-semiconductor-chips-subsidy-law-2025-03-05",
+            "https://digital-strategy.ec.europa.eu"
+          ]
+        }
+      ]
+    },
+    {
       "uid": "power_grid-836267e7452d",
       "fingerprint": "sha256:173139e8462b68b95ce68b85a7900e7fb79c4e176f45b72a014c836267e7452d",
       "fingerprint_fields": {
@@ -281,151 +426,6 @@
             "https://a16z.com/ai-costs-llmflation",
             "https://www.datacenterfrontier.com/sponsored/article/55271057/the-next-era-of-ai-data-centers-why-device-level-management-matters",
             "https://a16z.com"
-          ]
-        }
-      ]
-    },
-    {
-      "uid": "enterprise_demand-dd4a14f40a1e",
-      "fingerprint": "sha256:7f5154bb64389a783b703cd634f20cb2afae91644ed038930893dd4a14f40a1e",
-      "fingerprint_fields": {
-        "cluster": "enterprise_demand",
-        "event_type": "adoption update",
-        "primary_entities": [
-          "mckinsey",
-          "openai",
-          "stanford ai index"
-        ],
-        "geography": [
-          "GLOBAL",
-          "UNITED STATES"
-        ],
-        "instruments": [
-          "AI ADOPTION",
-          "INVESTMENT"
-        ],
-        "mechanism": "demand growth",
-        "canonical_source": "https://hai.stanford.edu"
-      },
-      "cluster": "ENTERPRISE_DEMAND",
-      "event_type": "adoption_update",
-      "title": "Enterprise AI Adoption Grows But Monetization Lags",
-      "phase": "watch",
-      "score": 57.5,
-      "sustainability_index": 57.5,
-      "bullish_score": 65,
-      "bearish_score": 50,
-      "confidence": "medium",
-      "indicators": {
-        "private_ai_investment_b_2024": 109.1,
-        "orgs_using_ai_pct": 78
-      },
-      "tripwires": [
-        "Watch whether more pilots move to production and measure cost savings"
-      ],
-      "rationale": [
-        "U.S. private AI investment hit $109 B in 2024 and generative-AI investment grew 18.7 %.",
-        "AI adoption jumped to 78 % of organisations but only 21 % have redesigned workflows and 31 % of use-cases are in full production.",
-        "OpenAI’s revenue run-rate doubled to about $10 B, showing demand but concentration."
-      ],
-      "sources": [
-        "https://hai.stanford.edu/ai-index/2025-ai-index-report",
-        "https://isg-one.com/state-of-enterprise-ai-adoption-report-2025",
-        "https://hai.stanford.edu"
-      ],
-      "first_seen": "2025-09-28",
-      "last_updated": "2025-09-28",
-      "history": [
-        {
-          "date": "2025-09-28",
-          "score": 57.5
-        }
-      ],
-      "canonical_source": "https://hai.stanford.edu",
-      "article_history": [
-        {
-          "date": "2025-09-28",
-          "title": "Enterprise AI Adoption Grows But Monetization Lags",
-          "score": 57.5,
-          "source": "https://hai.stanford.edu",
-          "sources": [
-            "https://hai.stanford.edu/ai-index/2025-ai-index-report",
-            "https://isg-one.com/state-of-enterprise-ai-adoption-report-2025",
-            "https://hai.stanford.edu"
-          ]
-        }
-      ]
-    },
-    {
-      "uid": "policy_geopolitics-c6985b356aa3",
-      "fingerprint": "sha256:ebfd52c65f207c9988a866ed8125479d9877a0cf738bd44ca760c6985b356aa3",
-      "fingerprint_fields": {
-        "cluster": "policy_geopolitics",
-        "event_type": "policy update",
-        "primary_entities": [
-          "china",
-          "eu",
-          "united states"
-        ],
-        "geography": [
-          "CHINA",
-          "EUROPE",
-          "UNITED STATES"
-        ],
-        "instruments": [
-          "AI ACT",
-          "CHIPS ACT",
-          "EXPORT CONTROLS"
-        ],
-        "mechanism": "policy and geopolitics",
-        "canonical_source": "https://digital-strategy.ec.europa.eu"
-      },
-      "cluster": "POLICY_GEOPOLITICS",
-      "event_type": "policy_update",
-      "title": "Regulation and Geopolitics Reshape AI Landscape",
-      "phase": "watch",
-      "score": 47.5,
-      "sustainability_index": 47.5,
-      "bullish_score": 55,
-      "bearish_score": 60,
-      "confidence": "medium",
-      "indicators": {
-        "eu_chips_act_funding_eur_b": 43,
-        "us_chips_act_subsidies_b": 39
-      },
-      "tripwires": [
-        "Monitor further export-control changes, AI Act implementation and potential repeal of U.S. subsidies"
-      ],
-      "rationale": [
-        "The EU AI Act imposes a risk-based regulatory framework and bans certain high-risk practices.",
-        "The EU Chips Act aims to raise Europe’s semiconductor share to 20 % with €43 billion in funding.",
-        "The U.S. Chips Act provides $39 billion in subsidies but faces efforts to repeal it.",
-        "U.S. export controls restrict AI chip sales to countries of concern."
-      ],
-      "sources": [
-        "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
-        "https://www.reuters.com/technology/trump-wants-kill-527-billion-semiconductor-chips-subsidy-law-2025-03-05",
-        "https://digital-strategy.ec.europa.eu"
-      ],
-      "first_seen": "2025-09-28",
-      "last_updated": "2025-09-28",
-      "history": [
-        {
-          "date": "2025-09-28",
-          "score": 47.5
-        }
-      ],
-      "canonical_source": "https://digital-strategy.ec.europa.eu",
-      "article_history": [
-        {
-          "date": "2025-09-28",
-          "title": "Regulation and Geopolitics Reshape AI Landscape",
-          "score": 47.5,
-          "source": "https://digital-strategy.ec.europa.eu",
-          "sources": [
-            "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
-            "https://www.reuters.com/technology/trump-wants-kill-527-billion-semiconductor-chips-subsidy-law-2025-03-05",
-            "https://digital-strategy.ec.europa.eu"
           ]
         }
       ]
