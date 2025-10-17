@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Methodology — AI Sustainability Monitor</title>
+    <title>Methodology - AI Sustainability Monitor</title>
     <meta
       name="description"
       content="How the AI Sustainability Monitor scores clusters, computes the sustainability index, and keeps data provenance intact."
@@ -60,7 +60,7 @@
 
           <section>
             <h2>Pipeline at a glance</h2>
-            <p>The workflow is intentionally simple—three repeatable stages keep the system transparent:</p>
+            <p>The workflow is intentionally simple - three repeatable stages keep the system transparent:</p>
             <div class="pipeline-flow">
               <div class="pipeline-card">
                 <span class="pipeline-card__step">1</span>
@@ -93,7 +93,7 @@
           </section>
 
           <section>
-            <h2>Step 1 — Deep research prompt</h2>
+            <h2>Step 1 - Deep research prompt</h2>
             <p>
               The Deep Research brief asks the analyst to assess whether the AI boom is sustainable across six structural pillars.
               The prompt mandates Amsterdam time, requires the JSON <code>as_of</code> field, and enforces continuity via
@@ -102,12 +102,12 @@
             <p>The standing clusters are:</p>
             <div class="cluster-infobox">
               <ul class="cluster-infobox__list">
-                <li><strong>AI_CAPEX</strong> — Hyperscaler capex and compute build-outs.</li>
-                <li><strong>POWER_GRID</strong> — Grid capacity, power procurement, and energy stress.</li>
-                <li><strong>SEMI_SUPPLY</strong> — Semiconductor supply, advanced node capacity, export controls.</li>
-                <li><strong>UNIT_ECONOMICS</strong> — Utilisation, cost curves, and gross margins.</li>
-                <li><strong>ENTERPRISE_DEMAND</strong> — Adoption, investment velocity, monetisation progress.</li>
-                <li><strong>POLICY_GEOPOLITICS</strong> — Regulation, subsidies, and geopolitical constraints.</li>
+                <li><strong>AI_CAPEX</strong> - Hyperscaler capex and compute build-outs.</li>
+                <li><strong>POWER_GRID</strong> - Grid capacity, power procurement, and energy stress.</li>
+                <li><strong>SEMI_SUPPLY</strong> - Semiconductor supply, advanced node capacity, export controls.</li>
+                <li><strong>UNIT_ECONOMICS</strong> - Utilisation, cost curves, and gross margins.</li>
+                <li><strong>ENTERPRISE_DEMAND</strong> - Adoption, investment velocity, monetisation progress.</li>
+                <li><strong>POLICY_GEOPOLITICS</strong> - Regulation, subsidies, and geopolitical constraints.</li>
               </ul>
               <p class="cluster-infobox__note">Analysts may introduce one additional cluster when primary evidence warrants it.</p>
             </div>
@@ -116,10 +116,77 @@
               rationale plus tripwires. The memo (R1) summarises findings for humans; the packet (R2) mirrors those findings for the
               ingest script.
             </p>
+            <h3>Copy-ready Deep Research prompt</h3>
+            <p>This version folds in rubric, scope, persistence rules, and JSON guardrails in a single reusable block.</p>
+            <div class="code-snippet" data-code-snippet>
+              <button
+                class="code-snippet__copy"
+                type="button"
+                aria-label="Copy Deep Research prompt"
+                data-copy-target="#delta-update-prompt"
+              >
+                <span class="code-snippet__icon" aria-hidden="true">📋</span>
+                <span class="code-snippet__label">Copy</span>
+              </button>
+              <pre><code id="delta-update-prompt">Objective: Produce an evidence-based delta update on AI infrastructure and compute financing every run. Work in Amsterdam time and return all times in ISO 8601.
+
+Run cadence:
+- Search for announcements or filings from the last 3 days worldwide.
+- Reevaluate every item already tracked in the Watchlist.
+- Update each tracked item with status, score, confidence, and last_verified even if nothing changed.
+
+Evidence rules:
+- Read and cite primary sources first (press releases, SEC/EDGAR filings, utility or regulator dockets, IR decks).
+- When a news story cites another outlet, follow the trail to the earliest primary source before scoring.
+- If facts conflict or remain unconfirmed, mark them as uncertain and explain why.
+
+Scope each run:
+- Foundation model builders and AI platforms: OpenAI, Anthropic, Google, Meta, Microsoft, xAI, Cohere, Stability, Mistral, others.
+- Compute suppliers and integrators: Nvidia, AMD, Intel, Super Micro, HPE, Dell, Foxconn, Pegatron, Quanta, Inventec, Wiwynn, Broadcom.
+- Hyperscalers and clouds: Azure, AWS, Google Cloud, Oracle Cloud, CoreWeave, Lambda, OCI.
+- Data center and power ecosystem: Equinix, Digital Realty, Switch, QTS, CyrusOne, NextEra, Exelon, EDF, Engie, RWE, Orsted, Iberdrola, grid operators, ISO/RTOs, major PPAs, colocation builds, permits, interconnect queues.
+- Key regions: United States, European Union, United Kingdom, Middle East, India, Southeast Asia.
+
+Rubric (score each announcement 0-100 with weights in parentheses):
+1) Economic substance (25): cash flow visibility, confirmed capacity, binding evidence such as permits or delivery photos.
+2) Financing independence (20): assess supplier financing, equity links, loans, warrants, or other circularity.
+3) Accounting clarity (15): note treatment under ASC 606 or IFRS 15, gross versus net recognition, warranty disclosures, segment impacts.
+4) Contract binding and phasing (15): distinguish LOI versus definitive agreements, milestones, penalties, delivery dates and quantities.
+5) Third-party demand and utilisation (15): independent demand signals, utilisation, bookings, backlog, customer diversity.
+6) Concentration risk (5): exposure to single counterparties or sites.
+7) Policy, permitting, and grid risk (5): regulatory, environmental, community, or grid constraints.
+
+Automatic adjustments:
+- Subtract 5-20 when a supplier also becomes an investor or lender; cite terms.
+- Reduce the score when warrants or credits tie to purchases unless valued separately at fair value; note expected accounting treatment.
+- Decay the score by 5 per run after 90 days without site, grid, or delivery specifics.
+- Subtract 5 for every missed milestone window and record the slip in the Diff section.
+
+Deliverables (present all sections clearly):
+A) Executive snapshot - 5 bullet summary with overall traffic light status (Green ≥80, Yellow 60-79, Orange 40-59, Red &lt;40) plus top risks and momentum.
+B) New announcements (last 3 days) - for each item capture who, what, where, size (GW/MW, racks, accelerator counts), term, financing terms, accounting notes, risks, score, confidence, citations.
+C) Reevaluation of Watchlist - rescore existing items, note milestone hits or slips, update last_verified, show score deltas with rationale.
+D) Scorecards - table listing entity, category, size, start date, next milestone, score, confidence, status.
+E) Diff since last run - adds, removals, upgrades or downgrades, milestones hit or missed.
+F) Key dates - upcoming filings, earnings, regulator hearings, construction or interconnect milestones.
+G) Sources - cite every primary source used; add secondary coverage only if it introduces new facts.
+H) Machine-readable JSON - output the ai_infra_health_check object that matches the published template exactly.
+
+JSON output guardrails:
+- Use ISO 8601 dates and UTC timestamps.
+- Do not invent fields beyond the template and keep arrays even when empty.
+- Align key names, nesting, and types with data/templates/ai_infra_health_check.template.json.
+- Return strictly valid JSON and place it in a fenced code block labeled json.
+
+Style:
+- Keep tone neutral and analytical with short sentences.
+- Flag any uncertainty explicitly.
+- Include unit conversions or definitions when referencing GW, MW, racks, or accelerator counts.</code></pre>
+            </div>
           </section>
 
           <section>
-            <h2>Step 2 — Structured packet</h2>
+            <h2>Step 2 - Structured packet</h2>
             <p>The packet is strict JSON so the site can ingest updates without manual intervention. Key fields include:</p>
             <ul>
               <li><strong>overall</strong>: Bullish/bearish composite scores, the supplied sustainability index, state flag, and overrides.</li>
@@ -131,20 +198,36 @@
               <li><strong>post</strong>: Daily overview published as the headline briefing.</li>
             </ul>
             <p>Packets are stored in <code>data/llm/</code>; the ingest script always selects the latest file for a given date.</p>
+            <div class="code-snippet" data-code-snippet>
+              <button
+                class="code-snippet__copy"
+                type="button"
+                aria-label="Copy ai_infra_health_check template"
+                data-copy-target="#ai-infra-template"
+              >
+                <span class="code-snippet__icon" aria-hidden="true">📋</span>
+                <span class="code-snippet__label">Copy</span>
+              </button>
+              <pre><code id="ai-infra-template">data/templates/ai_infra_health_check.template.json</code></pre>
+            </div>
+            <p class="code-snippet__note">
+              Use the template above as the contract for R2 packets. Every field maps one-to-one with the ingest validator, so
+              remove placeholder text but keep the structure intact.
+            </p>
           </section>
 
           <section>
-            <h2>Step 3 — Deterministic ingest</h2>
+            <h2>Step 3 - Deterministic ingest</h2>
             <p>Running <code>python scripts/ingest_llm_packet.py</code> performs the following deterministic steps:</p>
             <ol>
-              <li>Validate required keys, normalise URLs, and compute NSI values (50 + 0.5 × (bullish − bearish), bounded 0–100).</li>
+              <li>Validate required keys, normalise URLs, and compute NSI values (50 + 0.5 × (bullish − bearish), bounded 0-100).</li>
               <li>Merge events into <code>data/events.json</code> using SHA-256 fingerprints; append score history, rationale, tripwires, and sources.</li>
               <li>Apply decay: after a seven-day grace period, watch/elevated/critical events decay three NSI points per extra day.</li>
               <li>Generate/refresh HTML briefings, <code>data/latest_briefings.json</code>, and <code>data/briefings_archive.json</code>.</li>
               <li>Build <code>data/leaderboard.json</code> containing overall NSI, sorted clusters (lowest NSI first), top pressure list, thresholds, methodology note, and formatted hard metrics.</li>
               <li>Render the daily post (<code>posts/&lt;slug&gt;.html</code>) using the shared site chrome.</li>
             </ol>
-            <p>The script is idempotent—re-running with the same packet yields byte-identical outputs.</p>
+            <p>The script is idempotent-re-running with the same packet yields byte-identical outputs.</p>
           </section>
 
           <section>
@@ -155,9 +238,9 @@
               Clusters sort ascending (lowest NSI = greatest stress). Overall states map as follows:
             </p>
             <ul>
-              <li><strong>Resilient</strong> — NSI ≥ 60 and improving hard metrics.</li>
-              <li><strong>Watch</strong> — 45 ≤ NSI &lt; 60 or mixed hard metrics (default state when bullish ≈ bearish).</li>
-              <li><strong>Critical</strong> — NSI &lt; 45 or hard metrics in Tier X/Y.</li>
+              <li><strong>Resilient</strong> - NSI ≥ 60 and improving hard metrics.</li>
+              <li><strong>Watch</strong> - 45 ≤ NSI &lt; 60 or mixed hard metrics (default state when bullish ≈ bearish).</li>
+              <li><strong>Critical</strong> - NSI &lt; 45 or hard metrics in Tier X/Y.</li>
             </ul>
             <p>
               Decay prevents stale narratives from dominating the leaderboard. After seven days without fresh evidence, NSI drops
@@ -172,11 +255,11 @@
               Current metrics include:
             </p>
             <ul>
-              <li><strong>CCR</strong> — Capital coverage ratio (revenue versus depreciation+interest+opex). Tier X denotes dangerous shortfalls.</li>
-              <li><strong>PSR</strong> — Power security ratio (secured power vs. required power). Tier Y indicates watch status.</li>
-              <li><strong>UEI</strong> — Utilisation efficiency index (fleet utilisation %).</li>
-              <li><strong>MG</strong> — Operating margin (%) for AI workloads.</li>
-              <li><strong>FH</strong> — Financing headroom (ROIC − WACC, basis points).</li>
+              <li><strong>CCR</strong> - Capital coverage ratio (revenue versus depreciation+interest+opex). Tier X denotes dangerous shortfalls.</li>
+              <li><strong>PSR</strong> - Power security ratio (secured power vs. required power). Tier Y indicates watch status.</li>
+              <li><strong>UEI</strong> - Utilisation efficiency index (fleet utilisation %).</li>
+              <li><strong>MG</strong> - Operating margin (%) for AI workloads.</li>
+              <li><strong>FH</strong> - Financing headroom (ROIC − WACC, basis points).</li>
             </ul>
             <p>The ingest script formats values (e.g., × ratios, %, bps) and emits canonicalised sources for transparency.</p>
           </section>

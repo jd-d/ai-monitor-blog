@@ -1,0 +1,66 @@
+{
+  "ai_infra_health_check": {
+    "run_timestamp_utc": "2025-01-31T12:00:00Z",
+    "new_items": [
+      {
+        "entity": "<REQUIRED entity or project>",
+        "title": "<REQUIRED headline>",
+        "date": "2025-01-31",
+        "geography": "<REQUIRED city, region>",
+        "category": "<REQUIRED category>",
+        "size": {
+          "usd_commitment": 0,
+          "capacity_mw": 0,
+          "capacity_gw": 0,
+          "accelerator_count": 0,
+          "rack_count": 0,
+          "notes": "<OPTIONAL sizing notes>"
+        },
+        "terms": "<REQUIRED financing or contract terms>",
+        "accounting_notes": "<REQUIRED accounting treatment or disclosure summary>",
+        "risks": ["<REQUIRED risk one>", "<OPTIONAL risk two>", "<OPTIONAL risk three>"],
+        "score": 0,
+        "confidence": 0,
+        "status": "<REQUIRED lifecycle status>",
+        "primary_sources": ["<REQUIRED primary citation>", "<OPTIONAL secondary citation>"],
+        "secondary_sources": ["<OPTIONAL supporting article>"],
+        "last_verified": "2025-01-31"
+      }
+    ],
+    "reevaluated_items": [
+      {
+        "entity": "<REQUIRED existing watchlist item>",
+        "new_score": 0,
+        "change": 0,
+        "status": "<UPDATED status>",
+        "notes": "<OPTIONAL explanation>",
+        "last_verified": "2025-01-31"
+      }
+    ],
+    "watchlist": [
+      {
+        "name": "<REQUIRED tracked item>",
+        "category": "<OPTIONAL category>",
+        "score": 0,
+        "status": "<REQUIRED status>",
+        "last_verified": "2025-01-31"
+      }
+    ],
+    "red_flags": [
+      {
+        "item": "<REQUIRED entity>",
+        "issue": "<REQUIRED concern>",
+        "severity": "<LOW|MEDIUM|HIGH>",
+        "last_updated": "2025-01-31"
+      }
+    ],
+    "key_dates": [
+      {
+        "date": "2025-03-01",
+        "event": "<REQUIRED milestone>",
+        "source": "<REQUIRED cited source>",
+        "notes": "<OPTIONAL context>"
+      }
+    ]
+  }
+}

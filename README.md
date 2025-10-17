@@ -93,6 +93,13 @@ A trimmed example:
 }
 ```
 
+#### AI Infra Health Check template
+
+Use `data/templates/ai_infra_health_check.template.json` as the contract for the delta-style AI infrastructure updates referenced in
+the methodology. The template lists every required key, expected nesting, and placeholder values so Deep Research responses can
+drop into `data/llm/` without manual editing. Keep arrays present even when empty and align field names exactly to avoid ingest
+failures.
+
 ### 3. Deterministic ingest
 
 Running `python scripts/ingest_llm_packet.py`:
