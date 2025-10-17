@@ -137,11 +137,126 @@
     document.head.appendChild(script);
   }
 
+  function copyTextFallback(text) {
+    try {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'absolute';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      const success = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      return success;
+    } catch (error) {
+      console.warn('[main] copy fallback failed', error);
+      return false;
+    }
+  }
+
+  function bootstrapCopyButtons() {
+    if (!document.body) {
+      return;
+    }
+
+    const snippets = document.querySelectorAll('[data-code-snippet]');
+    if (!snippets.length) {
+      return;
+    }
+
+    let announcer = document.querySelector('.copy-announcer');
+    if (!announcer) {
+      announcer = document.createElement('div');
+      announcer.className = 'sr-only copy-announcer';
+      announcer.setAttribute('aria-live', 'polite');
+      document.body.appendChild(announcer);
+    }
+
+    snippets.forEach((snippet) => {
+      const button = snippet.querySelector('[data-copy-target]');
+      if (!button) {
+        return;
+      }
+
+      const selector = button.getAttribute('data-copy-target');
+      if (!selector) {
+        return;
+      }
+
+      const target = snippet.querySelector(selector);
+      if (!target) {
+        return;
+      }
+
+      const labelEl = button.querySelector('.code-snippet__label');
+      const defaultLabel = labelEl ? labelEl.textContent : '';
+      let resetTimer;
+
+      const announce = (message) => {
+        if (announcer) {
+          announcer.textContent = message;
+        }
+      };
+
+      const setCopiedState = (message) => {
+        button.classList.add('code-snippet__copy--copied');
+        if (labelEl && message) {
+          labelEl.textContent = message;
+        }
+        if (resetTimer) {
+          window.clearTimeout(resetTimer);
+        }
+        resetTimer = window.setTimeout(() => {
+          button.classList.remove('code-snippet__copy--copied');
+          if (labelEl) {
+            labelEl.textContent = defaultLabel || 'Copy';
+          }
+        }, 2000);
+      };
+
+      button.addEventListener('click', async () => {
+        const value = (target.textContent || '').trim();
+        if (!value) {
+          announce('Nothing to copy.');
+          return;
+        }
+
+        let copied = false;
+        if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+          try {
+            await navigator.clipboard.writeText(value);
+            copied = true;
+          } catch (error) {
+            console.warn('[main] navigator.clipboard write failed', error);
+          }
+        }
+
+        if (!copied) {
+          copied = copyTextFallback(value);
+        }
+
+        if (copied) {
+          announce('Code snippet copied to clipboard.');
+          setCopiedState('Copied');
+        } else {
+          announce('Unable to copy snippet.');
+          setCopiedState('Retry');
+        }
+      });
+    });
+  }
+
+  function onReady() {
+    bootstrapCopyButtons();
+    bootstrapPostEnhancements();
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bootstrapPostEnhancements, {
+    document.addEventListener('DOMContentLoaded', onReady, {
       once: true,
     });
   } else {
-    bootstrapPostEnhancements();
+    onReady();
   }
 })();

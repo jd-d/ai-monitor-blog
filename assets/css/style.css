@@ -1625,6 +1625,66 @@ a[data-confirm-link].confirm-link--armed::before {
   box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.65), 0 18px 30px rgba(8, 12, 24, 0.45);
 }
 
+.code-snippet {
+  position: relative;
+}
+
+.code-snippet pre {
+  margin-top: 0.8rem;
+}
+
+.code-snippet__copy {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(226, 232, 240, 0.9);
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.code-snippet__copy:hover,
+.code-snippet__copy:focus {
+  background: rgba(51, 65, 85, 0.95);
+  border-color: rgba(148, 163, 184, 0.6);
+  color: #f8fafc;
+}
+
+.code-snippet__copy:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.code-snippet__copy--copied {
+  background: rgba(22, 163, 74, 0.28);
+  border-color: rgba(34, 197, 94, 0.6);
+  color: #bbf7d0;
+}
+
+.code-snippet__icon {
+  font-size: 0.9rem;
+}
+
+.code-snippet__label {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.code-snippet__note {
+  margin: 0.6rem 0 0;
+  font-size: 0.9rem;
+  color: rgba(148, 163, 184, 0.85);
+}
+
 .post code {
   font-family: 'Fira Code', 'SFMono-Regular', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
   font-size: 0.92rem;
