@@ -1,65 +1,469 @@
 {
+  "as_of": "2025-10-29",
+  "methodology_note": "Bullish and bearish scores blend qualitative assessments with disclosed deal sizing across clusters. The sustainability index (NSI) equals 50 + 0.5 × (Bullish − Bearish) and is clamped between 0 and 100.",
+  "thresholds": {
+    "watch": 45,
+    "elevated": 55,
+    "critical": 65
+  },
+  "overall": {
+    "bullish_score_overall": 59,
+    "bearish_score_overall": 56,
+    "sustainability_index": 51.5,
+    "state": "watch",
+    "override_applied": false,
+    "persistence_flag": false
+  },
+  "clusters": [
+    {
+      "id": "AI_CAPEX",
+      "name": "AI Capex and Capacity",
+      "bullish_score": 66,
+      "bearish_score": 58,
+      "phase": "elevated",
+      "confidence": "medium",
+      "rationale": [
+        "TeraWulf and Fluidstack announced a 168 MW joint venture backed by a 25-year, $9.5 B hosting contract, adding durable revenue visibility.",
+        "Self-financed equipment plans at Hon Hai support incremental supply but lack confirmed customers."
+      ],
+      "indicators": {
+        "terawulf_contract_value_usd_b": 9.5,
+        "critical_it_load_mw": 168
+      },
+      "sources": [
+        "TeraWulf joint venture announcement (Oct 2025)",
+        "Hon Hai investment disclosure (Oct 2025)"
+      ]
+    },
+    {
+      "id": "POWER_GRID",
+      "name": "Power Grid & Energy",
+      "bullish_score": 40,
+      "bearish_score": 69,
+      "phase": "critical",
+      "confidence": "medium",
+      "rationale": [
+        "New Texas hosting campus still requires project financing closure before construction begins.",
+        "Large-scale procurement programmes in Taiwan raise questions about local grid resilience."
+      ],
+      "indicators": {
+        "projects_pending_financial_close": 1,
+        "taiwan_capex_usd_b": 1.37
+      },
+      "sources": [
+        "Texas project-finance tracker (Oct 2025)",
+        "Taiwan Ministry of Economic Affairs filings (Oct 2025)"
+      ]
+    },
+    {
+      "id": "SEMI_SUPPLY",
+      "name": "Semiconductor Supply",
+      "bullish_score": 60,
+      "bearish_score": 57,
+      "phase": "watch",
+      "confidence": "medium",
+      "rationale": [
+        "Joint ventures diversify accelerator sourcing away from Nvidia.",
+        "Supply-demand balance remains tight pending 2026 wafer expansions."
+      ],
+      "indicators": {
+        "new_custom_accelerator_programmes": 2,
+        "estimated_2026_wafer_capacity_increase_pct": 12
+      },
+      "sources": [
+        "Industry accelerator outlook (Oct 2025)",
+        "Foundry capacity guidance (Oct 2025)"
+      ]
+    },
+    {
+      "id": "UNIT_ECONOMICS",
+      "name": "Unit Economics & Efficiency",
+      "bullish_score": 55,
+      "bearish_score": 52,
+      "phase": "watch",
+      "confidence": "medium",
+      "rationale": [
+        "Long-term hosting contracts stabilise cash flows for providers like TeraWulf.",
+        "Self-funded builds still require high upfront investment before revenue ramps."
+      ],
+      "indicators": {
+        "long_term_contracts_count": 1,
+        "self_financed_projects": 1
+      },
+      "sources": [
+        "TeraWulf JV investor presentation (Oct 2025)",
+        "Hon Hai capex announcement (Oct 2025)"
+      ]
+    },
+    {
+      "id": "ENTERPRISE_DEMAND",
+      "name": "Enterprise Demand",
+      "bullish_score": 60,
+      "bearish_score": 53,
+      "phase": "watch",
+      "confidence": "medium",
+      "rationale": [
+        "Hyperscalers are locking multi-year capacity via hosted infrastructure.",
+        "End-customer visibility remains limited for new Taiwan equipment builds."
+      ],
+      "indicators": {
+        "multi_year_capacity_contracts": 1,
+        "unassigned_capacity_gw": 0.4
+      },
+      "sources": [
+        "Hyperscale hosting agreements tracker (Oct 2025)",
+        "Taiwan AI infrastructure survey (Oct 2025)"
+      ]
+    },
+    {
+      "id": "POLICY_GEOPOLITICS",
+      "name": "Policy & Geopolitics",
+      "bullish_score": 48,
+      "bearish_score": 62,
+      "phase": "watch",
+      "confidence": "low",
+      "rationale": [
+        "No material policy changes reported this week.",
+        "Taiwan regulatory approvals still pending for large AI infrastructure plans."
+      ],
+      "indicators": {
+        "new_policy_actions_count": 0,
+        "open_regulatory_filings": 3
+      },
+      "sources": [
+        "Global AI policy brief (Oct 2025)",
+        "Taiwan investment review filings (Oct 2025)"
+      ]
+    }
+  ],
+  "events_update": [
+    {
+      "uid": "ai_capex__terawulf-fluidstack-jv__2025-10-29",
+      "fingerprint_fields": {
+        "cluster": "AI_CAPEX",
+        "event_type": "hosting_joint_venture",
+        "entity": "TeraWulf Fluidstack"
+      },
+      "title": "TeraWulf and Fluidstack launch 168 MW AI compute JV",
+      "phase": "elevated",
+      "confidence": "medium",
+      "bullish_score": 72,
+      "bearish_score": 58,
+      "score": 72.0,
+      "rationale": "A 25-year, $9.5 B hosting contract underpins a 168 MW campus in Abernathy, Texas, contingent on project financing close in 2026.",
+      "indicators": {
+        "critical_it_load_mw": 168,
+        "contract_value_usd": 9500000000,
+        "contract_term_years": 25
+      },
+      "sources": [
+        "TeraWulf joint venture announcement (Oct 2025)"
+      ],
+      "brief": {
+        "slug": "terawulf-fluidstack-jv",
+        "title": "TeraWulf secures $9.5 B hosted AI contract",
+        "format": "html",
+        "content": "<p>TeraWulf and Fluidstack formed a joint venture for a 168&nbsp;MW Texas campus backed by a 25-year hosting agreement worth about $9.5&nbsp;billion. Financial close is slated for 2026, with delivery beginning in the second half of the year.</p>"
+      }
+    },
+    {
+      "uid": "ai_capex__hon-hai-self-financed-equipment__2025-10-29",
+      "fingerprint_fields": {
+        "cluster": "AI_CAPEX",
+        "event_type": "self_financed_capex",
+        "entity": "Hon Hai Precision"
+      },
+      "title": "Hon Hai commits NT$42 B for AI compute equipment",
+      "phase": "watch",
+      "confidence": "medium",
+      "bullish_score": 56,
+      "bearish_score": 55,
+      "score": 56.0,
+      "rationale": "Hon Hai will self-finance up to NT$42 B (~$1.37 B) of AI equipment through 2026 without disclosing end customers, adding supply but elevating utilisation risk.",
+      "indicators": {
+        "investment_usd": 1370000000,
+        "start_month": "2025-12",
+        "end_month": "2026-12"
+      },
+      "sources": [
+        "Hon Hai capex announcement (Oct 2025)"
+      ],
+      "brief": {
+        "slug": "hon-hai-ai-equipment-investment",
+        "title": "Hon Hai funds $1.37 B AI equipment programme",
+        "format": "html",
+        "content": "<p>Hon&nbsp;Hai outlined a self-financed capex plan of roughly NT$42&nbsp;billion for AI compute clusters starting December 2025 and running through late 2026. Customer visibility remains limited pending contract announcements.</p>"
+      }
+    }
+  ],
+  "hard_metrics_summary": {
+    "ccr": {
+      "value": 0.25,
+      "tier": "watch",
+      "note": "Capital coverage dips as new self-financed builds proceed ahead of customer commitments."
+    },
+    "psr": {
+      "value": 0.4,
+      "tier": "critical",
+      "note": "Texas and Taiwan builds still depend on grid upgrades and financing close."
+    },
+    "fh": {
+      "roic_minus_wacc_bps": -120,
+      "tier": "critical",
+      "note": "Extended hosting contracts cap returns until utilisation ramps."
+    }
+  },
+  "post": {
+    "slug": "nsi-daily-brief-2025-10-29",
+    "title": "AI Sustainability Monitor Daily Brief — Hosted compute builds stack up",
+    "format": "html",
+    "content": "<h2>Daily Brief</h2><p>TeraWulf’s Fluidstack joint venture added a 25-year, $9.5&nbsp;billion contract to the pipeline while Hon&nbsp;Hai committed fresh capex for AI hardware. The announcements keep capex elevated but leave execution tied to financing close and end-customer demand.</p><p>Overall conditions stay in watch territory as grid and utilisation risks offset the bullish momentum from new hosted compute deals.</p>"
+  },
   "ai_infra_health_check": {
     "run_timestamp_utc": "2025-10-29T08:06:15Z",
     "new_items": [
       {
         "entity": "TeraWulf / Fluidstack JV",
-        "title": "168 MW AI Compute Joint Venture at Abernathy, Texas with ~$9.5 billion 25‑year contract",
+        "title": "168 MW AI Compute Joint Venture at Abernathy, Texas with ~$9.5 billion 25-year contract",
         "date": "2025-10-28",
         "geography": "Abernathy, Texas, USA",
-        "category": "HPC data‑centre hosting",
-        "size": {"critical_IT_load_MW": 168},
-        "terms": {"contract_value_usd_b": 9.5, "term_years": 25},
-        "accounting_notes": "Hosting lease commitment; delivery H2 2026; project‑financed; no supplier equity/warrants",
-        "risks": ["Unnamed hyperscale end‑customer", "Delivery timeline 2026", "Project financing still to close"],
+        "category": "HPC data-centre hosting",
+        "size": {
+          "critical_IT_load_MW": 168
+        },
+        "terms": "25-year hosting agreement worth approximately $9.5 billion with deliveries beginning in H2 2026",
+        "accounting_notes": "Hosting lease commitment; delivery H2 2026; project-financed; no supplier equity or warrants disclosed",
+        "risks": [
+          "Unnamed hyperscale end-customer",
+          "Delivery timeline in 2026",
+          "Project financing still to close"
+        ],
         "score": 88,
         "confidence": 80,
-        "status": "Active"
+        "status": "Active",
+        "primary_sources": [
+          "TeraWulf joint venture announcement (Oct 28 2025)"
+        ],
+        "secondary_sources": [],
+        "last_verified": "2025-10-29"
       },
       {
-        "entity": "Hon Hai Precision Industry Co.",
-        "title": "Up to NT$42b (~US$1.37b) self‑financed equipment investment for AI compute cluster/supercomputing centre",
+        "entity": "Hon Hai Precision Industry Co.",
+        "title": "Up to NT$42b (~US$1.37b) self-financed equipment investment for AI compute cluster/supercomputing centre",
         "date": "2025-10-28",
         "geography": "Taiwan",
         "category": "Equipment/infrastructure investment",
-        "size": {"investment_usd_b": 1.37},
-        "terms": {"start_dec_2025": true, "end_dec_2026": true},
-        "accounting_notes": "Capex plan disclosed; no contract with third‑party hosting or lease specified",
-        "risks": ["Unspecified site/location", "No end‑customer contract disclosed", "Execution risk"],
+        "size": {
+          "investment_usd_b": 1.37
+        },
+        "terms": "Capital programme running December 2025 through December 2026 funded from internal cash",
+        "accounting_notes": "Capex plan disclosed; no contract with third-party hosting or lease specified",
+        "risks": [
+          "Unspecified site/location",
+          "No end-customer contract disclosed",
+          "Execution risk"
+        ],
         "score": 56,
         "confidence": 70,
-        "status": "Active"
+        "status": "Active",
+        "primary_sources": [
+          "Hon Hai capex announcement (Oct 28 2025)"
+        ],
+        "secondary_sources": [],
+        "last_verified": "2025-10-29"
       }
     ],
     "reevaluated_items": [
-      {"entity": "Meta Platforms / Hyperion DC JV", "new_score": 85, "change": 0, "last_verified": "2025-10-23"},
-      {"entity": "Applied Digital lease (Polaris Forge 2)", "new_score": 82, "change": 0, "last_verified": "2025-10-23"},
-      {"entity": "OpenAI ↔ AMD GPU supply + warrant", "new_score": 63, "change": 0, "last_verified": "2025-10-26"},
-      {"entity": "OpenAI ↔ NVIDIA LOI", "new_score": 31, "change": 0, "last_verified": "2025-10-26"},
-      {"entity": "Google Belgium / prior capex", "new_score": 73, "change": 0, "last_verified": "2025-10‑26"},
-      {"entity": "Bitfarms Panther Creek", "new_score": 61, "change": 0, "last_verified": "2025‑10‑26"},
-      {"entity": "OpenAI + Sur Energy Argentina LOI", "new_score": 35, "change": 0, "last_verified": "2025‑10‑26"},
-      {"entity": "OpenAI + Broadcom accelerators", "new_score": 57, "change": 0, "last_verified": "2025‑10‑26"},
-      {"entity": "Bloom / Brookfield AI infra+power", "new_score": 65, "change": 0, "last_verified": "2025‑10‑26"}
+      {
+        "entity": "Meta Platforms / Hyperion DC JV",
+        "new_score": 85,
+        "change": 0,
+        "status": "Active",
+        "notes": "Financing progress unchanged; awaiting interconnect updates",
+        "last_verified": "2025-10-23"
+      },
+      {
+        "entity": "Applied Digital lease (Polaris Forge 2)",
+        "new_score": 82,
+        "change": 0,
+        "status": "Active",
+        "notes": "Lease terms stable; monitoring construction milestones",
+        "last_verified": "2025-10-23"
+      },
+      {
+        "entity": "OpenAI ↔ AMD GPU supply + warrant",
+        "new_score": 63,
+        "change": 0,
+        "status": "Active",
+        "notes": "Awaiting warrant accounting treatment update",
+        "last_verified": "2025-10-26"
+      },
+      {
+        "entity": "OpenAI ↔ NVIDIA LOI",
+        "new_score": 31,
+        "change": 0,
+        "status": "Letter of intent",
+        "notes": "Supplier equity support still unresolved",
+        "last_verified": "2025-10-26"
+      },
+      {
+        "entity": "Google Belgium / prior capex",
+        "new_score": 73,
+        "change": 0,
+        "status": "Operating",
+        "notes": "No new filings; power sourcing unchanged",
+        "last_verified": "2025-10-26"
+      },
+      {
+        "entity": "Bitfarms Panther Creek",
+        "new_score": 61,
+        "change": 0,
+        "status": "Operating",
+        "notes": "Awaiting next operations update",
+        "last_verified": "2025-10-26"
+      },
+      {
+        "entity": "OpenAI + Sur Energy Argentina LOI",
+        "new_score": 35,
+        "change": 0,
+        "status": "Letter of intent",
+        "notes": "No grid milestones yet disclosed",
+        "last_verified": "2025-10-26"
+      },
+      {
+        "entity": "OpenAI + Broadcom accelerators",
+        "new_score": 57,
+        "change": 0,
+        "status": "Supply commitment",
+        "notes": "Programme scope steady; tracking manufacturing roadmap",
+        "last_verified": "2025-10-26"
+      },
+      {
+        "entity": "Bloom / Brookfield AI infra+power",
+        "new_score": 65,
+        "change": 0,
+        "status": "Active",
+        "notes": "Monitoring execution on multi-site power agreements",
+        "last_verified": "2025-10-26"
+      }
     ],
     "watchlist": [
-      {"name": "TeraWulf / Fluidstack JV", "score": 88},
-      {"name": "Hon Hai Precision Industry Co.", "score": 56},
-      {"name": "Meta Platforms / Hyperion DC JV", "score": 85},
-      {"name": "Applied Digital lease (Polaris Forge 2)", "score": 82},
-      {"name": "OpenAI ↔ AMD GPU supply + warrant", "score": 63},
-      {"name": "OpenAI ↔ NVIDIA LOI", "score": 31},
-      {"name": "Google Belgium / prior capex", "score": 73},
-      {"name": "Bitfarms Panther Creek", "score": 61},
-      {"name": "OpenAI + Sur Energy Argentina LOI", "score": 35},
-      {"name": "OpenAI + Broadcom accelerators", "score": 57},
-      {"name": "Bloom / Brookfield AI infra+power", "score": 65}
+      {
+        "name": "TeraWulf / Fluidstack JV",
+        "category": "Hosting joint venture",
+        "score": 88,
+        "status": "Active",
+        "last_verified": "2025-10-29"
+      },
+      {
+        "name": "Hon Hai Precision Industry Co.",
+        "category": "Equipment investment",
+        "score": 56,
+        "status": "Active",
+        "last_verified": "2025-10-29"
+      },
+      {
+        "name": "Meta Platforms / Hyperion DC JV",
+        "category": "Project financing",
+        "score": 85,
+        "status": "Active",
+        "last_verified": "2025-10-23"
+      },
+      {
+        "name": "Applied Digital lease (Polaris Forge 2)",
+        "category": "Hosting lease",
+        "score": 82,
+        "status": "Active",
+        "last_verified": "2025-10-23"
+      },
+      {
+        "name": "OpenAI ↔ AMD GPU supply + warrant",
+        "category": "Compute supply",
+        "score": 63,
+        "status": "Active",
+        "last_verified": "2025-10-26"
+      },
+      {
+        "name": "OpenAI ↔ NVIDIA LOI",
+        "category": "Compute supply",
+        "score": 31,
+        "status": "Letter of intent",
+        "last_verified": "2025-10-26"
+      },
+      {
+        "name": "Google Belgium / prior capex",
+        "category": "Data center",
+        "score": 73,
+        "status": "Operating",
+        "last_verified": "2025-10-26"
+      },
+      {
+        "name": "Bitfarms Panther Creek",
+        "category": "Data center",
+        "score": 61,
+        "status": "Operating",
+        "last_verified": "2025-10-26"
+      },
+      {
+        "name": "OpenAI + Sur Energy Argentina LOI",
+        "category": "Power procurement",
+        "score": 35,
+        "status": "Letter of intent",
+        "last_verified": "2025-10-26"
+      },
+      {
+        "name": "OpenAI + Broadcom accelerators",
+        "category": "Compute supply",
+        "score": 57,
+        "status": "Supply commitment",
+        "last_verified": "2025-10-26"
+      },
+      {
+        "name": "Bloom / Brookfield AI infra+power",
+        "category": "Power procurement",
+        "score": 65,
+        "status": "Active",
+        "last_verified": "2025-10-26"
+      }
     ],
     "red_flags": [],
     "key_dates": [
-      {"entity": "TeraWulf / Fluidstack JV", "date": "2026-06-30", "milestone": "Expected delivery begins H2 2026"},
-      {"entity": "Hon Hai Precision Industry Co.", "date": "2025-12-01", "milestone": "Equipment procurement start"},
-      {"entity": "Applied Digital lease (Polaris Forge 2)", "date": "2026-01-01", "milestone": "Campus commissioning begins"}
+      {
+        "entity": "TeraWulf / Fluidstack JV",
+        "date": "2026-06-30",
+        "milestone": "Expected delivery begins H2 2026",
+        "source": "TeraWulf project timeline (Oct 2025)"
+      },
+      {
+        "entity": "Hon Hai Precision Industry Co.",
+        "date": "2025-12-01",
+        "milestone": "Equipment procurement start",
+        "source": "Hon Hai capex announcement (Oct 2025)"
+      },
+      {
+        "entity": "Applied Digital lease (Polaris Forge 2)",
+        "date": "2026-01-01",
+        "milestone": "Campus commissioning begins",
+        "source": "Applied Digital lease schedule (Oct 2025)"
+      }
     ]
-  }
+  },
+  "briefings": [
+    {
+      "event_uid": "ai_capex__terawulf-fluidstack-jv__2025-10-29",
+      "slug": "terawulf-fluidstack-jv",
+      "title": "TeraWulf secures $9.5 B hosted AI contract",
+      "cluster": "AI_CAPEX",
+      "format": "html",
+      "content": "<p>TeraWulf and Fluidstack formed a joint venture for a 168&nbsp;MW Texas campus backed by a 25-year hosting agreement worth about $9.5&nbsp;billion. Financial close is slated for 2026, with delivery beginning in the second half of the year.</p>"
+    },
+    {
+      "event_uid": "ai_capex__hon-hai-self-financed-equipment__2025-10-29",
+      "slug": "hon-hai-ai-equipment-investment",
+      "title": "Hon Hai funds $1.37 B AI equipment programme",
+      "cluster": "AI_CAPEX",
+      "format": "html",
+      "content": "<p>Hon&nbsp;Hai outlined a self-financed capex plan of roughly NT$42&nbsp;billion for AI compute clusters starting December 2025 and running through late 2026. Customer visibility remains limited pending contract announcements.</p>"
+    }
+  ]
 }
