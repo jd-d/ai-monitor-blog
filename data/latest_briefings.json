@@ -1,47 +1,19 @@
 {
-  "as_of": "2025-09-28",
+  "as_of": "2025-10-29",
   "items": [
     {
-      "event_uid": "AI_CAPEX__hyperscalers-ai-capex-boom__2025-09-28",
-      "slug": "hyperscalers-ai-capex-boom",
-      "title": "Hyperscalers Expand AI Capex Amid $7 Trillion Buildout",
+      "event_uid": "ai_capex__terawulf-fluidstack-jv__2025-10-29",
+      "slug": "terawulf-fluidstack-jv",
+      "title": "TeraWulf secures $9.5 B hosted AI contract",
       "cluster": "AI_CAPEX",
-      "as_of": "2025-09-28"
+      "as_of": "2025-10-29"
     },
     {
-      "event_uid": "POWER_GRID__power-grid-bottleneck-ai__2025-09-28",
-      "slug": "power-grid-bottleneck-ai",
-      "title": "Power Constraints Threaten AI Data-Center Growth",
-      "cluster": "POWER_GRID",
-      "as_of": "2025-09-28"
-    },
-    {
-      "event_uid": "SEMI_SUPPLY__semiconductor-supply-strains-and-policy-risks__2025-09-28",
-      "slug": "semiconductor-supply-strains-and-policy-risks",
-      "title": "AI Chip Demand Strains Semiconductor Supply Amid Policy Risks",
-      "cluster": "SEMI_SUPPLY",
-      "as_of": "2025-09-28"
-    },
-    {
-      "event_uid": "UNIT_ECONOMICS__unit-economics-improving-but-margins-thin__2025-09-28",
-      "slug": "unit-economics-improving-but-margins-thin",
-      "title": "AI Unit Costs Plunge While Margins Remain Thin",
-      "cluster": "UNIT_ECONOMICS",
-      "as_of": "2025-09-28"
-    },
-    {
-      "event_uid": "ENTERPRISE_DEMAND__enterprise-ai-adoption-booming__2025-09-28",
-      "slug": "enterprise-ai-adoption-booming",
-      "title": "Enterprise AI Adoption Grows But Monetization Lags",
-      "cluster": "ENTERPRISE_DEMAND",
-      "as_of": "2025-09-28"
-    },
-    {
-      "event_uid": "POLICY_GEOPOLITICS__regulation-and-geopolitics-shape-ai__2025-09-28",
-      "slug": "regulation-and-geopolitics-shape-ai",
-      "title": "Regulation and Geopolitics Reshape AI Landscape",
-      "cluster": "POLICY_GEOPOLITICS",
-      "as_of": "2025-09-28"
+      "event_uid": "ai_capex__hon-hai-self-financed-equipment__2025-10-29",
+      "slug": "hon-hai-ai-equipment-investment",
+      "title": "Hon Hai funds $1.37 B AI equipment programme",
+      "cluster": "AI_CAPEX",
+      "as_of": "2025-10-29"
     }
   ]
 }

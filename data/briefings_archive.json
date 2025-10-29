@@ -1,6 +1,20 @@
 {
-  "generated_at": "2025-09-28",
+  "generated_at": "2025-10-29",
   "items": [
+    {
+      "slug": "terawulf-fluidstack-jv",
+      "title": "TeraWulf secures $9.5 B hosted AI contract",
+      "as_of": "2025-10-29",
+      "cluster": "AI_CAPEX",
+      "event_uid": "ai_capex__terawulf-fluidstack-jv__2025-10-29"
+    },
+    {
+      "slug": "hon-hai-ai-equipment-investment",
+      "title": "Hon Hai funds $1.37 B AI equipment programme",
+      "as_of": "2025-10-29",
+      "cluster": "AI_CAPEX",
+      "event_uid": "ai_capex__hon-hai-self-financed-equipment__2025-10-29"
+    },
     {
       "slug": "regulation-and-geopolitics-shape-ai",
       "title": "Regulation and Geopolitics Reshape AI Landscape",

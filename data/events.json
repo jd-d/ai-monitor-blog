@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "last_rebuild": "2025-09-28",
+  "last_rebuild": "2025-10-29",
   "events": [
     {
       "uid": "ai_capex-ba19072c40a7",
@@ -28,7 +28,7 @@
       "event_type": "investment_update",
       "title": "Hyperscalers Expand AI Capex Amid $7 Trillion Buildout",
       "phase": "elevated",
-      "score": 55.0,
+      "score": 0.0,
       "sustainability_index": 55.0,
       "bullish_score": 65,
       "bearish_score": 55,
@@ -56,6 +56,10 @@
         {
           "date": "2025-09-28",
           "score": 55.0
+        },
+        {
+          "date": "2025-10-29",
+          "score": 0.0
         }
       ],
       "canonical_source": "https://newmark.com",
@@ -99,7 +103,7 @@
       "event_type": "adoption_update",
       "title": "Enterprise AI Adoption Grows But Monetization Lags",
       "phase": "watch",
-      "score": 57.5,
+      "score": 0.0,
       "sustainability_index": 57.5,
       "bullish_score": 65,
       "bearish_score": 50,
@@ -127,6 +131,10 @@
         {
           "date": "2025-09-28",
           "score": 57.5
+        },
+        {
+          "date": "2025-10-29",
+          "score": 0.0
         }
       ],
       "canonical_source": "https://hai.stanford.edu",
@@ -172,7 +180,7 @@
       "event_type": "policy_update",
       "title": "Regulation and Geopolitics Reshape AI Landscape",
       "phase": "watch",
-      "score": 47.5,
+      "score": 0.0,
       "sustainability_index": 47.5,
       "bullish_score": 55,
       "bearish_score": 60,
@@ -201,6 +209,10 @@
         {
           "date": "2025-09-28",
           "score": 47.5
+        },
+        {
+          "date": "2025-10-29",
+          "score": 0.0
         }
       ],
       "canonical_source": "https://digital-strategy.ec.europa.eu",
@@ -244,7 +256,7 @@
       "event_type": "power_update",
       "title": "Power Constraints Threaten AI Data-Center Growth",
       "phase": "critical",
-      "score": 32.5,
+      "score": 0.0,
       "sustainability_index": 32.5,
       "bullish_score": 35,
       "bearish_score": 70,
@@ -272,6 +284,10 @@
         {
           "date": "2025-09-28",
           "score": 32.5
+        },
+        {
+          "date": "2025-10-29",
+          "score": 0.0
         }
       ],
       "canonical_source": "https://deloitte.com",
@@ -316,7 +332,7 @@
       "event_type": "supply_update",
       "title": "AI Chip Demand Strains Semiconductor Supply Amid Policy Risks",
       "phase": "elevated",
-      "score": 47.5,
+      "score": 0.0,
       "sustainability_index": 47.5,
       "bullish_score": 55,
       "bearish_score": 60,
@@ -344,6 +360,10 @@
         {
           "date": "2025-09-28",
           "score": 47.5
+        },
+        {
+          "date": "2025-10-29",
+          "score": 0.0
         }
       ],
       "canonical_source": "https://deloitte.com",
@@ -385,7 +405,7 @@
       "event_type": "cost_update",
       "title": "AI Unit Costs Plunge While Margins Remain Thin",
       "phase": "watch",
-      "score": 62.5,
+      "score": 0.0,
       "sustainability_index": 62.5,
       "bullish_score": 70,
       "bearish_score": 45,
@@ -413,6 +433,10 @@
         {
           "date": "2025-09-28",
           "score": 62.5
+        },
+        {
+          "date": "2025-10-29",
+          "score": 0.0
         }
       ],
       "canonical_source": "https://a16z.com",
@@ -426,6 +450,188 @@
             "https://a16z.com/ai-costs-llmflation",
             "https://www.datacenterfrontier.com/sponsored/article/55271057/the-next-era-of-ai-data-centers-why-device-level-management-matters",
             "https://a16z.com"
+          ]
+        }
+      ]
+    },
+    {
+      "uid": "ai_capex-e50d921d5bf6",
+      "fingerprint": "sha256:e1afd028be362c9c59b5db22bbfec9c7db9fd3d55a7a7661f77be50d921d5bf6",
+      "fingerprint_fields": {
+        "cluster": "ai_capex",
+        "event_type": "hosting joint venture",
+        "primary_entities": [],
+        "geography": [],
+        "instruments": [],
+        "mechanism": ""
+      },
+      "cluster": "AI_CAPEX",
+      "event_type": "hosting_joint_venture",
+      "title": "TeraWulf and Fluidstack launch 168 MW AI compute JV",
+      "phase": "elevated",
+      "score": 72.0,
+      "sustainability_index": 57.0,
+      "bullish_score": 72,
+      "bearish_score": 58,
+      "confidence": "medium",
+      "indicators": {
+        "critical_it_load_mw": 168,
+        "contract_value_usd": 9500000000,
+        "contract_term_years": 25
+      },
+      "tripwires": [],
+      "rationale": [
+        "A",
+        "2",
+        "5",
+        "-",
+        "y",
+        "e",
+        "a",
+        "r",
+        ",",
+        "$",
+        "9",
+        ".",
+        "B",
+        "h",
+        "o",
+        "s",
+        "t",
+        "i",
+        "n",
+        "g",
+        "c",
+        "u",
+        "d",
+        "p",
+        "1",
+        "6",
+        "8",
+        "M",
+        "W",
+        "m",
+        "b",
+        "T",
+        "x",
+        "j",
+        "f",
+        "l",
+        "0"
+      ],
+      "sources": [
+        "https:///TeraWulf joint venture announcement (Oct 2025)"
+      ],
+      "first_seen": "2025-10-29",
+      "last_updated": "2025-10-29",
+      "history": [
+        {
+          "date": "2025-10-29",
+          "score": 72.0
+        }
+      ],
+      "article_history": [
+        {
+          "date": "2025-10-29",
+          "title": "TeraWulf and Fluidstack launch 168 MW AI compute JV",
+          "score": 72.0,
+          "source": null,
+          "sources": [
+            "https:///TeraWulf joint venture announcement (Oct 2025)"
+          ]
+        }
+      ]
+    },
+    {
+      "uid": "ai_capex-e4fe78e4a324",
+      "fingerprint": "sha256:026cff0ae0bb42f631bdc672749cc2d0d26981948421f11bd81be4fe78e4a324",
+      "fingerprint_fields": {
+        "cluster": "ai_capex",
+        "event_type": "self financed capex",
+        "primary_entities": [],
+        "geography": [],
+        "instruments": [],
+        "mechanism": ""
+      },
+      "cluster": "AI_CAPEX",
+      "event_type": "self_financed_capex",
+      "title": "Hon Hai commits NT$42 B for AI compute equipment",
+      "phase": "watch",
+      "score": 56.0,
+      "sustainability_index": 50.5,
+      "bullish_score": 56,
+      "bearish_score": 55,
+      "confidence": "medium",
+      "indicators": {
+        "investment_usd": 1370000000,
+        "start_month": "2025-12",
+        "end_month": "2026-12"
+      },
+      "tripwires": [],
+      "rationale": [
+        "H",
+        "o",
+        "n",
+        "a",
+        "i",
+        "w",
+        "l",
+        "s",
+        "e",
+        "f",
+        "-",
+        "c",
+        "u",
+        "p",
+        "t",
+        "N",
+        "T",
+        "$",
+        "4",
+        "2",
+        "B",
+        "(",
+        "~",
+        "1",
+        ".",
+        "3",
+        "7",
+        ")",
+        "A",
+        "I",
+        "q",
+        "m",
+        "h",
+        "r",
+        "g",
+        "0",
+        "6",
+        "d",
+        ",",
+        "y",
+        "b",
+        "v",
+        "k"
+      ],
+      "sources": [
+        "https:///Hon Hai capex announcement (Oct 2025)"
+      ],
+      "first_seen": "2025-10-29",
+      "last_updated": "2025-10-29",
+      "history": [
+        {
+          "date": "2025-10-29",
+          "score": 56.0
+        }
+      ],
+      "article_history": [
+        {
+          "date": "2025-10-29",
+          "title": "Hon Hai commits NT$42 B for AI compute equipment",
+          "score": 56.0,
+          "source": null,
+          "sources": [
+            "https:///Hon Hai capex announcement (Oct 2025)"
           ]
         }
       ]
