@@ -1,4 +1,304 @@
 {
+  "as_of": "2025-10-17",
+  "methodology_note": "Bullish and bearish scores blend qualitative assessments with disclosed deal sizing across clusters. The sustainability index (NSI) equals 50 + 0.5 × (Bullish − Bearish) and is clamped between 0 and 100.",
+  "thresholds": {
+    "watch": 45,
+    "elevated": 55,
+    "critical": 65
+  },
+  "overall": {
+    "bullish_score_overall": 61,
+    "bearish_score_overall": 55,
+    "sustainability_index": 53,
+    "state": "watch",
+    "override_applied": false,
+    "persistence_flag": false
+  },
+  "clusters": [
+    {
+      "id": "AI_CAPEX",
+      "name": "AI Capex and Capacity",
+      "bullish_score": 68,
+      "bearish_score": 56,
+      "phase": "elevated",
+      "confidence": "medium",
+      "rationale": [
+        "Meta added a roughly $30 B non-recourse SPV to accelerate Hyperion data-center build-out while keeping minority equity.",
+        "The Aligned Data Centers acquisition at ~$40 B enterprise value signals continued willingness to fund large campus portfolios."
+      ],
+      "indicators": {
+        "meta_spv_commitment_usd_b": 30,
+        "aligned_enterprise_value_usd_b": 40
+      },
+      "sources": [
+        "Meta Hyperion financing announcement (Oct 2025)",
+        "Aligned Data Centers sale press release (Oct 2025)"
+      ]
+    },
+    {
+      "id": "POWER_GRID",
+      "name": "Power Grid & Energy",
+      "bullish_score": 38,
+      "bearish_score": 70,
+      "phase": "critical",
+      "confidence": "medium",
+      "rationale": [
+        "Large new Louisiana hyperscale load requires interconnect approvals that remain uncertain.",
+        "AI-related offtake still depends on lengthy grid upgrades with multi-year lead times."
+      ],
+      "indicators": {
+        "projected_louisiana_ai_load_gw": 1.6,
+        "average_interconnect_timeline_years": 3
+      },
+      "sources": [
+        "Louisiana PSC docket monitoring (2025)",
+        "North American grid interconnection status reports"
+      ]
+    },
+    {
+      "id": "SEMI_SUPPLY",
+      "name": "Semiconductor Supply",
+      "bullish_score": 62,
+      "bearish_score": 57,
+      "phase": "elevated",
+      "confidence": "medium",
+      "rationale": [
+        "OpenAI expanded custom accelerator collaboration with Broadcom targeting 10 GW of rack-scale capacity.",
+        "Design partnerships such as Rebellions joining Arm Total Design broaden supply options but still face validation hurdles."
+      ],
+      "indicators": {
+        "openai_broadcom_capacity_gw": 10,
+        "arm_total_design_partners": 1
+      },
+      "sources": [
+        "OpenAI-Broadcom joint announcement (Oct 2025)",
+        "Arm Total Design partner update (Oct 2025)"
+      ]
+    },
+    {
+      "id": "UNIT_ECONOMICS",
+      "name": "Unit Economics & Efficiency",
+      "bullish_score": 58,
+      "bearish_score": 49,
+      "phase": "watch",
+      "confidence": "medium",
+      "rationale": [
+        "Oracle plans to deploy 50,000 AMD MI450 GPUs by 2026, improving utilisation for rented capacity.",
+        "Joint development programmes still require high upfront spend, limiting near-term margin gains."
+      ],
+      "indicators": {
+        "oracle_planned_gpu_count": 50000,
+        "deployment_horizon_years": 2
+      },
+      "sources": [
+        "Oracle cloud infrastructure roadmap update (Oct 2025)",
+        "AMD MI450 launch briefing (Sep 2025)"
+      ]
+    },
+    {
+      "id": "ENTERPRISE_DEMAND",
+      "name": "Enterprise Demand",
+      "bullish_score": 63,
+      "bearish_score": 52,
+      "phase": "watch",
+      "confidence": "medium",
+      "rationale": [
+        "Broad availability of hyperscale campuses keeps AI services supply aligned with expanding enterprise pilots.",
+        "Financing structures remain complex, raising concerns about durability of demand beyond anchor tenants."
+      ],
+      "indicators": {
+        "ai_service_pipeline_billion_usd": 75,
+        "enterprise_ai_pilot_pct": 62
+      },
+      "sources": [
+        "Hyperscale tenant survey (Q4 2025)",
+        "Enterprise AI adoption benchmark (Q3 2025)"
+      ]
+    },
+    {
+      "id": "POLICY_GEOPOLITICS",
+      "name": "Policy & Geopolitics",
+      "bullish_score": 47,
+      "bearish_score": 63,
+      "phase": "watch",
+      "confidence": "low",
+      "rationale": [
+        "US export controls on advanced accelerators remain in place but no new restrictions announced this week.",
+        "Multiple jurisdictions are reviewing data-centre permitting and power procurement incentives."
+      ],
+      "indicators": {
+        "new_policy_actions_count": 0,
+        "open_permitting_reviews": 4
+      },
+      "sources": [
+        "US Commerce Department briefing (Oct 2025)",
+        "EU data-centre permitting tracker (Oct 2025)"
+      ]
+    }
+  ],
+  "events_update": [
+    {
+      "uid": "ai_capex__meta-hyperion-spv-financing__2025-10-17",
+      "fingerprint_fields": {
+        "cluster": "AI_CAPEX",
+        "event_type": "project_financing",
+        "entity": "Meta Hyperion"
+      },
+      "title": "Meta backs Hyperion DC with $30 B non-recourse structure",
+      "phase": "elevated",
+      "confidence": "medium",
+      "bullish_score": 74,
+      "bearish_score": 56,
+      "score": 74.0,
+      "rationale": "Meta is using a multi-tranche SPV to finance Hyperion while retaining 20% equity, securing capacity without over-levering the balance sheet.",
+      "indicators": {
+        "usd_commitment": 30000000000,
+        "capacity_gw": 1.6,
+        "equity_retained_pct": 20
+      },
+      "sources": [
+        "Meta Hyperion financing announcement (Oct 2025)"
+      ],
+      "brief": {
+        "slug": "meta-hyperion-spv-financing",
+        "title": "Meta locks in $30 B Hyperion financing",
+        "format": "html",
+        "content": "<p>Meta structured Hyperion as a non-recourse SPV issuing Rule 144A bonds with Meta holding a minority equity stake. The structure accelerates a 1.6&nbsp;GW campus while insulating Meta’s core balance sheet.</p>"
+      }
+    },
+    {
+      "uid": "ai_capex__aligned-data-centers-sale__2025-10-17",
+      "fingerprint_fields": {
+        "cluster": "AI_CAPEX",
+        "event_type": "m_and_a",
+        "entity": "Aligned Data Centers"
+      },
+      "title": "Infrastructure consortium acquires Aligned Data Centers for ~$40 B",
+      "phase": "elevated",
+      "confidence": "medium",
+      "bullish_score": 78,
+      "bearish_score": 58,
+      "score": 78.0,
+      "rationale": "AIP, MGX, and GIP are purchasing Aligned’s 50-campus platform, signalling continued availability of large equity checks for AI-centric capacity.",
+      "indicators": {
+        "enterprise_value_usd": 40000000000,
+        "campus_count": 50,
+        "capacity_gw": 5
+      },
+      "sources": [
+        "Aligned Data Centers sale press release (Oct 2025)"
+      ],
+      "brief": {
+        "slug": "aligned-data-centers-sale",
+        "title": "Aligned sale underscores appetite for AI campuses",
+        "format": "html",
+        "content": "<p>Infrastructure capital partners led by AIP and GIP agreed to acquire Aligned Data Centers at an estimated $40&nbsp;B enterprise value, expanding access to ready-to-scale AI campuses.</p>"
+      }
+    },
+    {
+      "uid": "semi_supply__openai-broadcom-custom-accelerator__2025-10-17",
+      "fingerprint_fields": {
+        "cluster": "SEMI_SUPPLY",
+        "event_type": "supply_agreement",
+        "entity": "OpenAI Broadcom"
+      },
+      "title": "OpenAI and Broadcom co-develop 10 GW of custom accelerators",
+      "phase": "watch",
+      "confidence": "medium",
+      "bullish_score": 65,
+      "bearish_score": 55,
+      "score": 65.0,
+      "rationale": "OpenAI is partnering with Broadcom on rack-scale accelerator design and manufacturing, diversifying away from Nvidia reliance.",
+      "indicators": {
+        "capacity_gw": 10
+      },
+      "sources": [
+        "OpenAI-Broadcom joint announcement (Oct 2025)"
+      ],
+      "brief": {
+        "slug": "openai-broadcom-custom-accelerators",
+        "title": "OpenAI taps Broadcom for custom silicon",
+        "format": "html",
+        "content": "<p>The partnership targets roughly 10&nbsp;GW of accelerator capacity with Broadcom handling manufacture and integration while OpenAI leads architecture.</p>"
+      }
+    },
+    {
+      "uid": "unit_economics__oracle-amd-supercluster__2025-10-17",
+      "fingerprint_fields": {
+        "cluster": "UNIT_ECONOMICS",
+        "event_type": "compute_deployment",
+        "entity": "Oracle AMD"
+      },
+      "title": "Oracle to deploy 50k AMD MI450 GPUs globally",
+      "phase": "watch",
+      "confidence": "medium",
+      "bullish_score": 60,
+      "bearish_score": 50,
+      "score": 60.0,
+      "rationale": "Oracle is expanding AMD-based AI superclusters through 2026, adding supply diversity for enterprise workloads.",
+      "indicators": {
+        "accelerator_count": 50000
+      },
+      "sources": [
+        "Oracle cloud infrastructure roadmap update (Oct 2025)",
+        "AMD MI450 launch briefing (Sep 2025)"
+      ],
+      "brief": {
+        "slug": "oracle-amd-mi450-deployment",
+        "title": "Oracle lines up 50k AMD accelerators",
+        "format": "html",
+        "content": "<p>Oracle plans to deploy 50,000 AMD MI450 accelerators across global superclusters by 2026, complementing existing Nvidia-based fleets.</p>"
+      }
+    },
+    {
+      "uid": "semi_supply__rebellions-arm-total-design__2025-10-17",
+      "fingerprint_fields": {
+        "cluster": "SEMI_SUPPLY",
+        "event_type": "design_collaboration",
+        "entity": "Rebellions Arm"
+      },
+      "title": "Rebellions joins Arm Total Design programme",
+      "phase": "watch",
+      "confidence": "low",
+      "bullish_score": 45,
+      "bearish_score": 55,
+      "score": 45.0,
+      "rationale": "Arm will support Rebellions with IP and integration for custom accelerators, expanding the design ecosystem though commercial adoption remains unproven.",
+      "indicators": {},
+      "sources": [
+        "Arm Total Design partner update (Oct 2025)"
+      ],
+      "brief": {
+        "slug": "rebellions-arm-total-design",
+        "title": "Rebellions taps Arm for accelerator design",
+        "format": "html",
+        "content": "<p>Rebellions joined Arm’s Total Design programme to accelerate custom AI chip development, but production ramp and customer adoption are still pending.</p>"
+      }
+    }
+  ],
+  "hard_metrics_summary": {
+    "ccr": {
+      "value": 0.27,
+      "tier": "watch",
+      "note": "Capital coverage reflects recently announced non-recourse structures that keep leverage manageable."
+    },
+    "psr": {
+      "value": 0.42,
+      "tier": "critical",
+      "note": "Grid readiness lags hyperscale commitments in Louisiana and Argentina."
+    },
+    "uei": {
+      "utilization_pct": 76,
+      "tier": "watch",
+      "note": "Utilisation improves as Oracle ramps multi-vendor clusters but remains below target 85%."
+    }
+  },
+  "post": {
+    "slug": "nsi-daily-brief-2025-10-17",
+    "title": "AI Sustainability Monitor Daily Brief — Capex accelerates via SPVs",
+    "format": "html",
+    "content": "<h2>Daily Brief</h2><p>Meta and infrastructure partners layered in more than $70&nbsp;billion of new capital commitments for AI campuses, keeping capex momentum elevated even as grid bottlenecks persist. Custom silicon partnerships with Broadcom and Arm widen the accelerator pipeline, while Oracle’s AMD rollout supports utilisation improvements.</p><p>The NSI remains in watch territory as power delivery risks and complex financing structures offset bullish deployment activity.</p>"
+  },
   "ai_infra_health_check": {
     "run_timestamp_utc": "2025-10-17T07:06:31Z",
     "new_items": [
@@ -24,7 +324,9 @@
         "score": 75,
         "confidence": 80,
         "status": "Active",
-        "primary_sources": ["turn0news17"],
+        "primary_sources": [
+          "Meta Hyperion financing announcement (Oct 16 2025)"
+        ],
         "secondary_sources": [],
         "last_verified": "2025-10-17"
       },
@@ -42,11 +344,17 @@
         },
         "terms": "Equity acquisition funded by infrastructure capital partners",
         "accounting_notes": "Asset acquisition; no revenue recognition impact",
-        "risks": ["Integration", "Capital deployment cadence", "Upgrade requirements"],
+        "risks": [
+          "Integration",
+          "Capital deployment cadence",
+          "Upgrade requirements"
+        ],
         "score": 80,
         "confidence": 85,
         "status": "Acquired",
-        "primary_sources": ["turn0search6"],
+        "primary_sources": [
+          "Aligned Data Centers acquisition announcement (Oct 14 2025)"
+        ],
         "secondary_sources": [],
         "last_verified": "2025-10-17"
       },
@@ -62,11 +370,16 @@
         },
         "terms": "OpenAI leads architecture; Broadcom manufactures and integrates racks and networking",
         "accounting_notes": "No disclosed circular financing or equity incentives",
-        "risks": ["Delivery schedule", "Integration with data center infrastructure"],
+        "risks": [
+          "Delivery schedule",
+          "Integration with data center infrastructure"
+        ],
         "score": 65,
         "confidence": 70,
         "status": "Supply commitment",
-        "primary_sources": ["turn0search4"],
+        "primary_sources": [
+          "OpenAI-Broadcom joint announcement (Oct 13 2025)"
+        ],
         "secondary_sources": [],
         "last_verified": "2025-10-17"
       },
@@ -82,11 +395,17 @@
         },
         "terms": "Procurement and integration of AMD accelerators into Oracle Cloud infrastructure",
         "accounting_notes": "No warrants or supplier financing disclosed",
-        "risks": ["Power and cooling availability", "Integration costs", "Vendor roadmap execution"],
+        "risks": [
+          "Power and cooling availability",
+          "Integration costs",
+          "Vendor roadmap execution"
+        ],
         "score": 60,
         "confidence": 70,
         "status": "Planned deployment",
-        "primary_sources": ["turn0news23"],
+        "primary_sources": [
+          "Oracle infrastructure roadmap webcast (Oct 15 2025)"
+        ],
         "secondary_sources": [],
         "last_verified": "2025-10-17"
       },
@@ -101,11 +420,16 @@
         },
         "terms": "Arm IP licensing and integration support for custom accelerators",
         "accounting_notes": "Design collaboration without direct infrastructure deployment",
-        "risks": ["Adoption risk", "Performance validation"],
+        "risks": [
+          "Adoption risk",
+          "Performance validation"
+        ],
         "score": 45,
         "confidence": 70,
         "status": "Design collaboration",
-        "primary_sources": ["turn0search8"],
+        "primary_sources": [
+          "Arm Total Design partner update (Oct 15 2025)"
+        ],
         "secondary_sources": [],
         "last_verified": "2025-10-17"
       }
@@ -161,20 +485,104 @@
       }
     ],
     "watchlist": [
-      {"name": "OpenAI and AMD 6 GW GPU supply with warrant", "category": "Compute supply", "score": 68, "status": "Active", "last_verified": "2025-10-17"},
-      {"name": "OpenAI and NVIDIA 10 GW LOI", "category": "Compute supply", "score": 36, "status": "Letter of intent", "last_verified": "2025-10-17"},
-      {"name": "Google Belgium prior capex", "category": "Data center", "score": 78, "status": "Operating", "last_verified": "2025-10-17"},
-      {"name": "Bitfarms Panther Creek", "category": "Data center", "score": 66, "status": "Operating", "last_verified": "2025-10-17"},
-      {"name": "OpenAI and Sur Energy Argentina LOI", "category": "Power procurement", "score": 40, "status": "Letter of intent", "last_verified": "2025-10-17"},
-      {"name": "Google India 1 GW hub", "category": "Data center", "score": 74, "status": "Planned", "last_verified": "2025-10-17"},
-      {"name": "OpenAI and Broadcom 10 GW accelerators", "category": "Compute supply", "score": 65, "status": "Supply commitment", "last_verified": "2025-10-17"},
-      {"name": "Bloom and Brookfield AI infrastructure power", "category": "Power procurement", "score": 70, "status": "Active", "last_verified": "2025-10-17"},
-      {"name": "Applied Digital Macquarie financing", "category": "Project financing", "score": 60, "status": "Active", "last_verified": "2025-10-17"},
-      {"name": "New Era and TCDC Texas 8-K update", "category": "Regulatory", "score": 55, "status": "Pending", "last_verified": "2025-10-17"},
-      {"name": "Meta Hyperion DC financing", "category": "Project financing", "score": 75, "status": "Active", "last_verified": "2025-10-17"},
-      {"name": "Aligned Data Centers acquisition", "category": "M&A", "score": 80, "status": "Acquired", "last_verified": "2025-10-17"},
-      {"name": "AMD and Oracle AI supercluster", "category": "Compute deployment", "score": 60, "status": "Planned deployment", "last_verified": "2025-10-17"},
-      {"name": "Rebellions and Arm collaboration", "category": "Chip design", "score": 45, "status": "Design collaboration", "last_verified": "2025-10-17"}
+      {
+        "name": "OpenAI and AMD 6 GW GPU supply with warrant",
+        "category": "Compute supply",
+        "score": 68,
+        "status": "Active",
+        "last_verified": "2025-10-17"
+      },
+      {
+        "name": "OpenAI and NVIDIA 10 GW LOI",
+        "category": "Compute supply",
+        "score": 36,
+        "status": "Letter of intent",
+        "last_verified": "2025-10-17"
+      },
+      {
+        "name": "Google Belgium prior capex",
+        "category": "Data center",
+        "score": 78,
+        "status": "Operating",
+        "last_verified": "2025-10-17"
+      },
+      {
+        "name": "Bitfarms Panther Creek",
+        "category": "Data center",
+        "score": 66,
+        "status": "Operating",
+        "last_verified": "2025-10-17"
+      },
+      {
+        "name": "OpenAI and Sur Energy Argentina LOI",
+        "category": "Power procurement",
+        "score": 40,
+        "status": "Letter of intent",
+        "last_verified": "2025-10-17"
+      },
+      {
+        "name": "Google India 1 GW hub",
+        "category": "Data center",
+        "score": 74,
+        "status": "Planned",
+        "last_verified": "2025-10-17"
+      },
+      {
+        "name": "OpenAI and Broadcom 10 GW accelerators",
+        "category": "Compute supply",
+        "score": 65,
+        "status": "Supply commitment",
+        "last_verified": "2025-10-17"
+      },
+      {
+        "name": "Bloom and Brookfield AI infrastructure power",
+        "category": "Power procurement",
+        "score": 70,
+        "status": "Active",
+        "last_verified": "2025-10-17"
+      },
+      {
+        "name": "Applied Digital Macquarie financing",
+        "category": "Project financing",
+        "score": 60,
+        "status": "Active",
+        "last_verified": "2025-10-17"
+      },
+      {
+        "name": "New Era and TCDC Texas 8-K update",
+        "category": "Regulatory",
+        "score": 55,
+        "status": "Pending",
+        "last_verified": "2025-10-17"
+      },
+      {
+        "name": "Meta Hyperion DC financing",
+        "category": "Project financing",
+        "score": 75,
+        "status": "Active",
+        "last_verified": "2025-10-17"
+      },
+      {
+        "name": "Aligned Data Centers acquisition",
+        "category": "M&A",
+        "score": 80,
+        "status": "Acquired",
+        "last_verified": "2025-10-17"
+      },
+      {
+        "name": "AMD and Oracle AI supercluster",
+        "category": "Compute deployment",
+        "score": 60,
+        "status": "Planned deployment",
+        "last_verified": "2025-10-17"
+      },
+      {
+        "name": "Rebellions and Arm collaboration",
+        "category": "Chip design",
+        "score": 45,
+        "status": "Design collaboration",
+        "last_verified": "2025-10-17"
+      }
     ],
     "red_flags": [
       {
@@ -200,21 +608,63 @@
       {
         "date": "2026-06-30",
         "event": "Expected closing of Aligned Data Centers acquisition",
-        "source": "press commentary",
+        "source": "Aligned acquisition timetable (Oct 2025)",
         "notes": "Monitor for regulatory approvals"
       },
       {
         "date": "2026-07-01",
         "event": "OpenAI and Broadcom second half 2026 deployment window",
-        "source": "OpenAI press release",
+        "source": "OpenAI-Broadcom programme brief",
         "notes": "Confirm phase gating"
       },
       {
         "date": "2026-07-01",
         "event": "AMD Oracle supercluster deployment target",
-        "source": "Oracle investor communication",
+        "source": "Oracle infrastructure roadmap webcast",
         "notes": "Validate capacity ramp"
       }
     ]
-  }
+  },
+  "briefings": [
+    {
+      "event_uid": "ai_capex__meta-hyperion-spv-financing__2025-10-17",
+      "slug": "meta-hyperion-spv-financing",
+      "title": "Meta locks in $30 B Hyperion financing",
+      "cluster": "AI_CAPEX",
+      "format": "html",
+      "content": "<p>Meta structured Hyperion as a non-recourse SPV issuing Rule 144A bonds with Meta holding a minority equity stake. The structure accelerates a 1.6&nbsp;GW campus while insulating Meta’s core balance sheet.</p>"
+    },
+    {
+      "event_uid": "ai_capex__aligned-data-centers-sale__2025-10-17",
+      "slug": "aligned-data-centers-sale",
+      "title": "Aligned sale underscores appetite for AI campuses",
+      "cluster": "AI_CAPEX",
+      "format": "html",
+      "content": "<p>Infrastructure capital partners led by AIP and GIP agreed to acquire Aligned Data Centers at an estimated $40&nbsp;B enterprise value, expanding access to ready-to-scale AI campuses.</p>"
+    },
+    {
+      "event_uid": "semi_supply__openai-broadcom-custom-accelerator__2025-10-17",
+      "slug": "openai-broadcom-custom-accelerators",
+      "title": "OpenAI taps Broadcom for custom silicon",
+      "cluster": "SEMI_SUPPLY",
+      "format": "html",
+      "content": "<p>The partnership targets roughly 10&nbsp;GW of accelerator capacity with Broadcom handling manufacture and integration while OpenAI leads architecture.</p>"
+    },
+    {
+      "event_uid": "unit_economics__oracle-amd-supercluster__2025-10-17",
+      "slug": "oracle-amd-mi450-deployment",
+      "title": "Oracle lines up 50k AMD accelerators",
+      "cluster": "UNIT_ECONOMICS",
+      "format": "html",
+      "content": "<p>Oracle plans to deploy 50,000 AMD MI450 accelerators across global superclusters by 2026, complementing existing Nvidia-based fleets.</p>"
+    },
+    {
+      "event_uid": "semi_supply__rebellions-arm-total-design__2025-10-17",
+      "slug": "rebellions-arm-total-design",
+      "title": "Rebellions taps Arm for accelerator design",
+      "cluster": "SEMI_SUPPLY",
+      "format": "html",
+      "content": "<p>Rebellions joined Arm’s Total Design programme to accelerate custom AI chip development, but production ramp and customer adoption are still pending.</p>"
+    }
+  ]
 }
