@@ -1,0 +1,65 @@
+{
+  "ai_infra_health_check": {
+    "run_timestamp_utc": "2025-10-29T08:06:15Z",
+    "new_items": [
+      {
+        "entity": "TeraWulf / Fluidstack JV",
+        "title": "168 MW AI Compute Joint Venture at Abernathy, Texas with ~$9.5 billion 25‑year contract",
+        "date": "2025-10-28",
+        "geography": "Abernathy, Texas, USA",
+        "category": "HPC data‑centre hosting",
+        "size": {"critical_IT_load_MW": 168},
+        "terms": {"contract_value_usd_b": 9.5, "term_years": 25},
+        "accounting_notes": "Hosting lease commitment; delivery H2 2026; project‑financed; no supplier equity/warrants",
+        "risks": ["Unnamed hyperscale end‑customer", "Delivery timeline 2026", "Project financing still to close"],
+        "score": 88,
+        "confidence": 80,
+        "status": "Active"
+      },
+      {
+        "entity": "Hon Hai Precision Industry Co.",
+        "title": "Up to NT$42b (~US$1.37b) self‑financed equipment investment for AI compute cluster/supercomputing centre",
+        "date": "2025-10-28",
+        "geography": "Taiwan",
+        "category": "Equipment/infrastructure investment",
+        "size": {"investment_usd_b": 1.37},
+        "terms": {"start_dec_2025": true, "end_dec_2026": true},
+        "accounting_notes": "Capex plan disclosed; no contract with third‑party hosting or lease specified",
+        "risks": ["Unspecified site/location", "No end‑customer contract disclosed", "Execution risk"],
+        "score": 56,
+        "confidence": 70,
+        "status": "Active"
+      }
+    ],
+    "reevaluated_items": [
+      {"entity": "Meta Platforms / Hyperion DC JV", "new_score": 85, "change": 0, "last_verified": "2025-10-23"},
+      {"entity": "Applied Digital lease (Polaris Forge 2)", "new_score": 82, "change": 0, "last_verified": "2025-10-23"},
+      {"entity": "OpenAI ↔ AMD GPU supply + warrant", "new_score": 63, "change": 0, "last_verified": "2025-10-26"},
+      {"entity": "OpenAI ↔ NVIDIA LOI", "new_score": 31, "change": 0, "last_verified": "2025-10-26"},
+      {"entity": "Google Belgium / prior capex", "new_score": 73, "change": 0, "last_verified": "2025-10‑26"},
+      {"entity": "Bitfarms Panther Creek", "new_score": 61, "change": 0, "last_verified": "2025‑10‑26"},
+      {"entity": "OpenAI + Sur Energy Argentina LOI", "new_score": 35, "change": 0, "last_verified": "2025‑10‑26"},
+      {"entity": "OpenAI + Broadcom accelerators", "new_score": 57, "change": 0, "last_verified": "2025‑10‑26"},
+      {"entity": "Bloom / Brookfield AI infra+power", "new_score": 65, "change": 0, "last_verified": "2025‑10‑26"}
+    ],
+    "watchlist": [
+      {"name": "TeraWulf / Fluidstack JV", "score": 88},
+      {"name": "Hon Hai Precision Industry Co.", "score": 56},
+      {"name": "Meta Platforms / Hyperion DC JV", "score": 85},
+      {"name": "Applied Digital lease (Polaris Forge 2)", "score": 82},
+      {"name": "OpenAI ↔ AMD GPU supply + warrant", "score": 63},
+      {"name": "OpenAI ↔ NVIDIA LOI", "score": 31},
+      {"name": "Google Belgium / prior capex", "score": 73},
+      {"name": "Bitfarms Panther Creek", "score": 61},
+      {"name": "OpenAI + Sur Energy Argentina LOI", "score": 35},
+      {"name": "OpenAI + Broadcom accelerators", "score": 57},
+      {"name": "Bloom / Brookfield AI infra+power", "score": 65}
+    ],
+    "red_flags": [],
+    "key_dates": [
+      {"entity": "TeraWulf / Fluidstack JV", "date": "2026-06-30", "milestone": "Expected delivery begins H2 2026"},
+      {"entity": "Hon Hai Precision Industry Co.", "date": "2025-12-01", "milestone": "Equipment procurement start"},
+      {"entity": "Applied Digital lease (Polaris Forge 2)", "date": "2026-01-01", "milestone": "Campus commissioning begins"}
+    ]
+  }
+}
