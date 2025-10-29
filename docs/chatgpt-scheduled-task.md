@@ -45,3 +45,122 @@ Scoring discipline and style
 - Always include unit conversions and definitions for GW, MW, rack counts, and accelerator counts where used.
 - Keep language concise and analytical. Use bullet points, short sentences, and numeric specifics. Avoid hype.
 ```
+
+## Machine-readable packet specification
+
+The scheduled task must emit a machine-readable JSON block that fully conforms to the AI Sustainability Monitor packet contract. Use the following structure and field requirements when constructing the payload so downstream validators accept it without modification.
+
+### Top-level envelope
+
+```json
+{
+  "as_of": "YYYY-MM-DD",
+  "methodology_note": "string",
+  "thresholds": {"watch": number, "elevated": number, "critical": number},
+  "overall": {
+    "bullish_score_overall": number,
+    "bearish_score_overall": number,
+    "sustainability_index": number,
+    "state": "watch" | "elevated" | "critical",
+    "override_applied": boolean,
+    "persistence_flag": boolean
+  },
+  "clusters": [Cluster, ...],
+  "events_update": [EventUpdate, ...],
+  "hard_metrics_summary": {MetricId: MetricSummary, ...},
+  "post": Post,
+  "briefings": [Briefing, ...],
+  "ai_infra_health_check": HealthCheck
+}
+```
+
+* Populate every key exactly as shown. Arrays (`clusters`, `events_update`, `briefings`) must exist even when empty.
+* Dates (`as_of`, any `last_verified`, or `run_timestamp_utc`) use ISO 8601 format. Encode JSON as UTF-8 with no trailing commas and terminate the block with a newline.
+
+### Cluster object
+
+```json
+{
+  "id": "AI_CAPEX",
+  "name": "AI Capex and Capacity",
+  "bullish_score": number,
+  "bearish_score": number,
+  "phase": "watch" | "elevated" | "critical",
+  "confidence": "high" | "medium" | "low",
+  "rationale": ["string", ...],
+  "indicators": {"metric_name": number | string, ...},
+  "sources": ["plain URL or citation text", ...]
+}
+```
+
+Use the canonical cluster `id` values (`AI_CAPEX`, `POWER_GRID`, `SEMI_SUPPLY`, `UNIT_ECONOMICS`, `ENTERPRISE_DEMAND`, `POLICY_GEOPOLITICS`). Provide at least one rationale entry and one source per cluster.
+
+### Event update object
+
+```json
+{
+  "uid": "ai_capex__meta-hyperion-spv-financing__2025-10-17",
+  "fingerprint_fields": {
+    "cluster": "AI_CAPEX",
+    "event_type": "project_financing",
+    "entity": "Meta Hyperion"
+  },
+  "title": "Concise event title",
+  "phase": "watch" | "elevated" | "critical",
+  "confidence": "high" | "medium" | "low",
+  "bullish_score": number,
+  "bearish_score": number,
+  "score": number,
+  "rationale": "One-sentence justification",
+  "indicators": {"name": number | string, ...},
+  "sources": ["URL or plain citation", ...],
+  "brief": {
+    "slug": "kebab-case-slug",
+    "title": "Brief headline",
+    "format": "html" | "md",
+    "content": "Sanitised HTML fragment"
+  }
+}
+```
+
+Always include `fingerprint_fields.cluster` and at least one `sources` entry. `brief.content` must remain third-person and free of helper tokens.
+
+### Hard metrics summary
+
+```json
+{
+  "ccr": {"value": number, "tier": "watch", "note": "string"},
+  "psr": {"value": number, "tier": "critical", "note": "string"},
+  "uei": {"utilization_pct": number, "tier": "watch", "note": "string"}
+}
+```
+
+Match tiers to `watch`, `elevated`, or `critical` and explain each data point with a concise note.
+
+### Post object
+
+```json
+{
+  "slug": "nsi-daily-brief-2025-10-29",
+  "title": "AI Sustainability Monitor Daily Brief ...",
+  "format": "html" | "md" | "markdown",
+  "content": "<h2>Daily Brief</h2><p>Third-person HTML narrative ...</p>"
+}
+```
+
+The `content` field must use sanitised HTML without inline scripts or Markdown link syntax.
+
+### AI infrastructure health check payload
+
+```json
+{
+  "run_timestamp_utc": "2025-10-29T08:06:15Z",
+  "new_items": [ { /* object matching data/templates/ai_infra_health_check.template.json */ } ],
+  "reevaluated_items": [ { "status": "Active", ... } ],
+  "watchlist": [ { "name": "Item", "category": "Type", "score": number, "status": "Active", "last_verified": "YYYY-MM-DD" } ],
+  "red_flags": [ ... ],
+  "key_dates": [ { "date": "YYYY-MM-DD", "event": "Milestone", "source": "Citation", "notes": "Optional" } ]
+}
+```
+
+Keep every array present, even when empty, and mirror the schema defined in `data/templates/ai_infra_health_check.template.json`. Use SI units and cite primary sources first.
